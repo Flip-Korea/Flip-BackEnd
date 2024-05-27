@@ -1,0 +1,9 @@
+spring :
+  application:
+    name: flipapp
+
+  profiles:
+    group:
+      local:
+        - localdb
+    active: local
