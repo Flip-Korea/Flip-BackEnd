@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Table(name = "temp_post")
 @Getter
