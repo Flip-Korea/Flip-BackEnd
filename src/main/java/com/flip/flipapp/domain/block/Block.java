@@ -1,7 +1,6 @@
-package com.flip.flipapp.domain.PostTag;
+package com.flip.flipapp.domain.block;
 
-import com.flip.flipapp.domain.Post.Post;
-import com.flip.flipapp.domain.Tag.Tag;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,23 +14,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "post_tag")
+@Table(name = "block")
 @Getter
 @NoArgsConstructor
-public class PostTag {
+public class Block {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "post_tag_id", nullable = false, columnDefinition = "bigint")
-  private Long postTagId;
+  @Column(name = "block_id", nullable = false, columnDefinition = "bigint")
+  private Long blockId;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
-  private Post postId;
+  @JoinColumn(name = "blocked_id", nullable = false, columnDefinition = "bigint")
+  private Profile blocked;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "tag_id", nullable = false, columnDefinition = "bigint")
-  private Tag tagId;
-
+  @JoinColumn(name = "blocker_id", nullable = false, columnDefinition = "bigint")
+  private Profile blocker;
 }
-

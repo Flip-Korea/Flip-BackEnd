@@ -1,7 +1,7 @@
-package com.flip.flipapp.domain.TempPost;
+package com.flip.flipapp.domain.tempPost;
 
-import com.flip.flipapp.domain.Category.Category;
-import com.flip.flipapp.domain.Profile.Profile;
+import com.flip.flipapp.domain.category.Category;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

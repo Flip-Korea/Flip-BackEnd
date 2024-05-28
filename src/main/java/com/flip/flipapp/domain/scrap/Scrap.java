@@ -1,7 +1,7 @@
-package com.flip.flipapp.domain.InterestCategory;
+package com.flip.flipapp.domain.scrap;
 
-import com.flip.flipapp.domain.Category.Category;
-import com.flip.flipapp.domain.Profile.Profile;
+import com.flip.flipapp.domain.post.Post;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,21 +15,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "interest_category")
+@Table(name = "scrap")
 @Getter
 @NoArgsConstructor
-public class InterestCategory {
+public class Scrap {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "interest_category_id", nullable = false, columnDefinition = "bigint")
-  private Long interestCategoryId;
+  @Column(name = "scrap_id", nullable = false, columnDefinition = "bigint")
+  private Long scrapId;
+
+  @Column(name = "scrap_comment", nullable = false, columnDefinition = "text")
+  private String scrapComment;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
   private Profile profileId;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
-  private Category categoryId;
+  @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
+  private Post postId;
 
 }

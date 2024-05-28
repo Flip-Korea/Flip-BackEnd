@@ -1,7 +1,7 @@
-package com.flip.flipapp.domain.Scrap;
+package com.flip.flipapp.domain.comment;
 
-import com.flip.flipapp.domain.Post.Post;
-import com.flip.flipapp.domain.Profile.Profile;
+import com.flip.flipapp.domain.post.Post;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,22 +11,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "scrap")
+@Table(name = "comment")
 @Getter
 @NoArgsConstructor
-public class Scrap {
+public class Comment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "scrap_id", nullable = false, columnDefinition = "bigint")
-  private Long scrapId;
+  @Column(name = "comment_id", nullable = false, columnDefinition = "bigint")
+  private Long commentId;
 
-  @Column(name = "scrap_comment", nullable = false, columnDefinition = "text")
-  private String scrapComment;
+  @Column(name = "content", nullable = false, columnDefinition = "text")
+  private String content;
+
+  @Column(name = "comment_at", nullable = false, columnDefinition = "datetime")
+  private LocalDateTime commentAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
@@ -35,5 +39,4 @@ public class Scrap {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
   private Post postId;
-
 }

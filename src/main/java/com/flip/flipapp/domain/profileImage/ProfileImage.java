@@ -1,6 +1,6 @@
-package com.flip.flipapp.domain.ProfileImage;
+package com.flip.flipapp.domain.profileImage;
 
-import com.flip.flipapp.domain.Profile.Profile;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

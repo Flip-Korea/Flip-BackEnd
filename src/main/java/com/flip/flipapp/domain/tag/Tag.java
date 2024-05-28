@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.Tag;
+package com.flip.flipapp.domain.tag;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

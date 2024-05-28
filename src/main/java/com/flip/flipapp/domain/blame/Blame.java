@@ -1,8 +1,8 @@
-package com.flip.flipapp.domain.Blame;
+package com.flip.flipapp.domain.blame;
 
-import com.flip.flipapp.domain.Comment.Comment;
-import com.flip.flipapp.domain.Post.Post;
-import com.flip.flipapp.domain.Profile.Profile;
+import com.flip.flipapp.domain.comment.Comment;
+import com.flip.flipapp.domain.post.Post;
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

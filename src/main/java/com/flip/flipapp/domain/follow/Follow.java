@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.Follow;
+package com.flip.flipapp.domain.follow;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
