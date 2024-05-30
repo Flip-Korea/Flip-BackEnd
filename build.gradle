@@ -46,7 +46,7 @@ dependencies {
 
 jib {
     from {
-        image = "openjdk:17-jre-slim"
+        image = "openjdk:17-alpine"
     }
     to {
         image = System.getenv("DOCKERHUB_REPO") ?: ""
