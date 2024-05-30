@@ -6,6 +6,8 @@ spring :
     group:
       dev:
         - devdb
+        - flyway
       local:
         - localdb
+        - flyway
     active: local
