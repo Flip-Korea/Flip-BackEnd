@@ -1,5 +1,3 @@
-USE flip;
-
 CREATE TABLE IF NOT EXISTS account
 (
     account_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
