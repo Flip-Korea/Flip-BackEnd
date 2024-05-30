@@ -20,7 +20,7 @@ public class Tag {
   @Column(name = "tag_id", nullable = false, columnDefinition = "bigint")
   private Long tagId;
 
-  @Column(name = "tag", nullable = false, columnDefinition = "varchar(255)")
-  private String tag;
+  @Column(name = "tag_name", nullable = false, columnDefinition = "varchar(255)")
+  private String tagName;
 
 }

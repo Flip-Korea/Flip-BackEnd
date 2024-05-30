@@ -36,16 +36,16 @@ public class Notification {
   @Column(name = "noti_at", nullable = false, columnDefinition = "datetime")
   private LocalDateTime notiAt;
 
-  @Column(name = "is_read", nullable = false, columnDefinition = "boolean")
-  private Boolean isRead;
+  @Column(name = "is_read", nullable = false, columnDefinition = "tinyint(1)")
+  private boolean isRead;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "sender_id", nullable = false, columnDefinition = "bigint")
   private Profile senderId;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "creator_id", nullable = false, columnDefinition = "bigint")
-  private Profile creatorId;
+  @JoinColumn(name = "receiver_id", nullable = false, columnDefinition = "bigint")
+  private Profile receiverId;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "comment_id", columnDefinition = "bigint")
