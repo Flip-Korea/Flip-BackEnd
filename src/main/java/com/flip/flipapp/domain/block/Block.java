@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.block;
 
-import com.flip.flipapp.domain.profile.Profile;
+import com.flip.flipapp.domain.account.Account;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,9 +26,9 @@ public class Block {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "blocked_id", nullable = false, columnDefinition = "bigint")
-  private Profile blocked;
+  private Account blocked;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "blocker_id", nullable = false, columnDefinition = "bigint")
-  private Profile blocker;
+  private Account blocker;
 }

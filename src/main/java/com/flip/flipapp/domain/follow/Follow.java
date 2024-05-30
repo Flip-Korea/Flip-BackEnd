@@ -1,10 +1,14 @@
 package com.flip.flipapp.domain.follow;
 
+import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
@@ -21,11 +25,13 @@ public class Follow {
   @Column(name = "follow_id", nullable = false, columnDefinition = "bigint")
   private Long followId;
 
-  @Column(name = "following_id", nullable = false, columnDefinition = "varchar(20)")
-  private String followingId;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "following_id", nullable = false, columnDefinition = "bigint")
+  private Profile followingId;
 
-  @Column(name = "follower_id", nullable = false, columnDefinition = "varchar(20)")
-  private String followerId;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "follower_id", nullable = false, columnDefinition = "bigint")
+  private Profile followerId;
 
   @Column(name = "fallow_at", nullable = false, columnDefinition = "datetime")
   private LocalDateTime fallowAt;
