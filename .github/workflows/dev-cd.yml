@@ -6,10 +6,6 @@ on:
       - develop
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: "backend/flip"
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
