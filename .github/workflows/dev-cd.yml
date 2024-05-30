@@ -54,6 +54,7 @@ jobs:
           script: |
             echo "flip-dev 배포 시작"
             IMAGE_ID=$(docker inspect --format '{{.Config.Image}}' flip-dev)
+            docker stop flip-dev
             docker rm flip-dev
             docker rmi $IMAGE_ID
             docker run --name flip-dev -d -p 8080:8080 ${{ env.DOCKERHUB_REPO }}:${{ env.SHORT_SHA }}
