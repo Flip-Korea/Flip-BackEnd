@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+
+logging:
+  level:
+    org.springframework.security: info
+    com.zaxxer.hikari: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health, info"

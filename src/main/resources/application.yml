@@ -4,6 +4,8 @@ spring :
 
   profiles:
     group:
+      dev:
+        - devdb
       local:
         - localdb
     active: local

@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.1.5'
+    id 'com.google.cloud.tools.jib' version '3.4.2'
 }
 
 group = 'com.flip'
@@ -41,6 +42,27 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+}
+
+jib {
+    from {
+        image = "openjdk:17-alpine"
+    }
+    to {
+        image = System.getenv("DOCKERHUB_REPO") ?: ""
+        tags = [System.getenv("SHORT_SHA")]
+    }
+
+    container {
+        jvmFlags = ["-Duser.timezone=Asia/Seoul"]
+        environment = [
+                "SPRING_PROFILES_ACTIVE": System.getenv("SPRING_PROFILES_ACTIVE"),
+                "DATASOURCE_URL"        : System.getenv("DATASOURCE_URL"),
+                "DATASOURCE_USERNAME"   : System.getenv("DATASOURCE_USERNAME"),
+                "DATASOURCE_PASSWORD"   : System.getenv("DATASOURCE_PASSWORD"),
+                "TZ"                    : "Asia/Seoul"
+        ]
+    }
 }
 
 tasks.named('test') {
