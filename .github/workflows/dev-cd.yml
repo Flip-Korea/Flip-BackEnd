@@ -3,7 +3,7 @@ name: dev server CD
 on:
   push:
     branches:
-      - dev
+      - develop
 
 defaults:
   run:
