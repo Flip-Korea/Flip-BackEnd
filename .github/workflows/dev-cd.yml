@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 defaults:
   run:
@@ -19,7 +20,7 @@ jobs:
       DATASOURCE_URL: ${{ secrets.DATASOURCE_URL }}
       DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
       DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
-      SHORT_SHA: ${{ github.sha::7 }}
+      SHORT_SHA: ${{ github.sha }}
 
     steps:
       - name: Checkout
