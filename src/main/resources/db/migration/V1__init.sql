@@ -105,12 +105,12 @@ CREATE TABLE IF NOT EXISTS comment
 CREATE TABLE IF NOT EXISTS blame
 (
     blame_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    type        VARCHAR(25) NOT NULL,
-    blame_at    DATETIME    NOT NULL,
-    post_id     BIGINT UNSIGNED      NULL,
-    comment_id  BIGINT UNSIGNED      NULL,
-    reporter_id BIGINT UNSIGNED      NOT NULL,
-    reported_id BIGINT UNSIGNED      NOT NULL,
+    type        VARCHAR(25)     NOT NULL,
+    blame_at    DATETIME        NOT NULL,
+    post_id     BIGINT UNSIGNED NULL,
+    comment_id  BIGINT UNSIGNED NULL,
+    reporter_id BIGINT UNSIGNED NOT NULL,
+    reported_id BIGINT UNSIGNED NOT NULL,
 
     PRIMARY KEY (blame_id),
     FOREIGN KEY (post_id) REFERENCES post (post_id),
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS scrap
     FOREIGN KEY (post_id) REFERENCES post (post_id)
 );
 
-CREATE TABLE temp_post
+CREATE TABLE IF NOT EXISTS temp_post
 (
     post_id     BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     title       VARCHAR(100)    NOT NULL,
