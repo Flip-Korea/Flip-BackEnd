@@ -23,7 +23,7 @@ public class Category {
   private Long categoryId;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "category", nullable = false, columnDefinition = "varchar(25)")
-  private CategoryType category;
+  @Column(name = "category_name", nullable = false, columnDefinition = "varchar(25)")
+  private CategoryType categoryName;
 
 }

@@ -1,8 +1,8 @@
 package com.flip.flipapp.domain.blame;
 
+import com.flip.flipapp.domain.account.Account;
 import com.flip.flipapp.domain.comment.Comment;
 import com.flip.flipapp.domain.post.Post;
-import com.flip.flipapp.domain.profile.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,10 +46,10 @@ public class Blame {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "reporter_id", nullable = false, columnDefinition = "bigint")
-  private Profile reporterId;
+  private Account reporterId;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "reported_id", nullable = false, columnDefinition = "bigint")
-  private Profile reportedId;
+  private Account reportedId;
 
 }
