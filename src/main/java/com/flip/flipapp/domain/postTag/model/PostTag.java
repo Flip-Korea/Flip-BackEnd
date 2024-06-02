@@ -1,7 +1,7 @@
-package com.flip.flipapp.domain.postTag;
+package com.flip.flipapp.domain.postTag.model;
 
-import com.flip.flipapp.domain.post.Post;
-import com.flip.flipapp.domain.tag.Tag;
+import com.flip.flipapp.domain.post.model.Post;
+import com.flip.flipapp.domain.tag.model.Tag;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
