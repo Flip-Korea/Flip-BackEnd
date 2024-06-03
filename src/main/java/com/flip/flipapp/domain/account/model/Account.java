@@ -2,6 +2,8 @@ package com.flip.flipapp.domain.account.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,8 +25,9 @@ public class Account {
   @Column(name = "oauth_id", nullable = false, columnDefinition = "varchar(255)", unique = true)
   private String oauthId;
 
-  @Column(name = "account_state", nullable = false, columnDefinition = "varchar(25)")
-  private String accountState;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private AccountState accountState = AccountState.ACTIVE;
 
   @Column(name = "recent_login", nullable = false, columnDefinition = "bigint")
   private Long recentLogin;
