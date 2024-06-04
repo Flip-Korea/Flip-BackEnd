@@ -1,6 +1,8 @@
 package com.flip.flipapp.domain.tempPost.model;
 
 import com.flip.flipapp.domain.category.model.Category;
+import com.flip.flipapp.domain.post.model.BgColorType;
+import com.flip.flipapp.domain.post.model.FontStyleType;
 import com.flip.flipapp.domain.profile.model.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
