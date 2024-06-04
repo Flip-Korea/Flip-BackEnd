@@ -1,9 +1,13 @@
 package com.flip.flipapp.domain.tempPost.model;
 
 import com.flip.flipapp.domain.category.model.Category;
+import com.flip.flipapp.domain.post.model.BgColorType;
+import com.flip.flipapp.domain.post.model.FontStyleType;
 import com.flip.flipapp.domain.profile.model.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,11 +39,13 @@ public class TempPost {
   @Column(name = "post_at", nullable = false, columnDefinition = "datetime")
   private LocalDateTime postAt;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "bg_color", nullable = false, columnDefinition = "varchar(25)")
-  private String bgColor;
+  private BgColorType bgColor;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "font_style", nullable = false, columnDefinition = "varchar(25)")
-  private String fontStyle;
+  private FontStyleType fontStyle;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
