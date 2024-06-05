@@ -19,17 +19,16 @@ public class Account {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "account", nullable = false, columnDefinition = "bigint")
+  @Column(name = "account_id", nullable = false, columnDefinition = "bigint")
   private Long accountId;
 
   @Column(name = "oauth_id", nullable = false, columnDefinition = "varchar(255)", unique = true)
   private String oauthId;
 
   @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
+  @Column(name = "account_state", nullable = false, columnDefinition = "varchar(25)")
   private AccountState accountState = AccountState.ACTIVE;
 
   @Column(name = "recent_login", nullable = false, columnDefinition = "bigint")
   private Long recentLogin;
-
 }
