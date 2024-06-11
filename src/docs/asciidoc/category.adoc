@@ -1,0 +1,4 @@
+[[get-all-categories]]
+=== 모든 카테고리 조회
+
+operation::getAllCategories[snippets='http-request,http-response,response-body,response-fields']

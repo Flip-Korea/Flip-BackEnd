@@ -11,3 +11,14 @@
 == Overview
 
 include::overview.adoc[]
+
+[[category-api]]
+== CATEGORY API
+
+include::category.adoc[]
+
+[[post-api]]
+== POST API
+
+[[auth-api]]
+== AUTH API
