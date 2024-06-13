@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew build -PtestProfile=test-github --info
 
       - name: If build fail
-        if: $ {{ failure() }}
+        if: ${{ failure() }}
         uses: actions/github-script@v7
         with:
           script: |
