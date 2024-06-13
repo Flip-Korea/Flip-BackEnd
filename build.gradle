@@ -81,7 +81,10 @@ ext {
     snippetsDir = file('build/generated-snippets')
 }
 
+def testProfile = project.hasProperty("testProfile") ? project.property("testProfile").toString() : "test-local"
+
 test {
+    systemProperty("spring.profiles.active", testProfile)
     outputs.dir snippetsDir
     useJUnitPlatform()
 }
