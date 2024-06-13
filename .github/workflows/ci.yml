@@ -42,11 +42,14 @@ jobs:
         with:
           github-token: ${{ secrets.PAT }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const pull_number = ${{ github.event.pull_request.number }}
+            const updated_title = `[BUILD SUCCESS] ${{ github.event.pull_request.title }}`
+            await github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Build 성공 😊'
+              pull_number: pull_number,
+              body: 'Build 성공 😊',
+              event: 'COMMENT'
             })
 
       - name: If build fail
@@ -55,9 +58,12 @@ jobs:
         with:
           github-token: ${{ secrets.PAT }}
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const pull_number = ${{ github.event.pull_request.number }}
+            const updated_title = `[BUILD FAIL] ${{ github.event.pull_request.title }}`
+            await github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Build 실패 😟'
+              pull_number: pull_number,
+              body: 'Build 실패 😟',
+              event: 'REQUEST_CHANGES'
             })
