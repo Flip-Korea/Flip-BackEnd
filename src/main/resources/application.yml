@@ -10,4 +10,12 @@ spring :
       local:
         - localdb
         - flyway
+      test-local:
+        - test
+        - localdb
+        - flyway
+      test-github:
+        - test
+        - githubdb
+        - flyway
     active: local
