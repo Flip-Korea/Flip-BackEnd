@@ -36,34 +36,34 @@ jobs:
       - name: Build and Test
         run: ./gradlew build -PtestProfile=test-github --info
 
-      - name: If build Success
-        if: ${{ success() }}
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.PAT }}
-          script: |
-            const pull_number = ${{ github.event.pull_request.number }}
-            const updated_title = `[BUILD SUCCESS] ${{ github.event.pull_request.title }}`
-            await github.rest.pulls.createReview({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pull_number,
-              body: 'Build 성공 😊',
-              event: 'COMMENT'
-            })
-
-      - name: If build fail
-        if: ${{ failure() }}
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.PAT }}
-          script: |
-            const pull_number = ${{ github.event.pull_request.number }}
-            const updated_title = `[BUILD FAIL] ${{ github.event.pull_request.title }}`
-            await github.rest.pulls.createReview({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pull_number,
-              body: 'Build 실패 😟',
-              event: 'REQUEST_CHANGES'
-            })
+#      - name: If build Success
+#        if: ${{ success() }}
+#        uses: actions/github-script@v7
+#        with:
+#          github-token: ${{ secrets.PAT }}
+#          script: |
+#            const pull_number = ${{ github.event.pull_request.number }}
+#            const updated_title = `[BUILD SUCCESS] ${{ github.event.pull_request.title }}`
+#            await github.rest.pulls.createReview({
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              pull_number: pull_number,
+#              body: 'Build 성공 😊',
+#              event: 'COMMENT'
+#            })
+#
+#      - name: If build fail
+#        if: ${{ failure() }}
+#        uses: actions/github-script@v7
+#        with:
+#          github-token: ${{ secrets.PAT }}
+#          script: |
+#            const pull_number = ${{ github.event.pull_request.number }}
+#            const updated_title = `[BUILD FAIL] ${{ github.event.pull_request.title }}`
+#            await github.rest.pulls.createReview({
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              pull_number: pull_number,
+#              body: 'Build 실패 😟',
+#              event: 'REQUEST_CHANGES'
+#            })
