@@ -10,6 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +20,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "profile")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor
 public class Profile {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "profile_id", nullable = false, columnDefinition = "bigint")
@@ -35,6 +41,10 @@ public class Profile {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "account_id", nullable = false, columnDefinition = "bigint")
-  private Account accountId;
+  private Account account;
+
+  public static Profile getAuthenticatedProfile(Long profileId) {
+    return Profile.builder().profileId(profileId).build();
+  }
 
 }
