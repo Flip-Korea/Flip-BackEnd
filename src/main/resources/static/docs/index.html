@@ -551,13 +551,13 @@ Content-Length: 284
   "code" : "C001",
   "message" : "올바르지 않은 입력 값입니다.",
   "errors" : [ {
-    "field" : "email",
-    "value" : "email",
-    "reason" : "must be a well-formed email address"
-  }, {
     "field" : "name",
     "value" : "",
     "reason" : "must not be blank"
+  }, {
+    "field" : "email",
+    "value" : "email",
+    "reason" : "must be a well-formed email address"
   } ]
 }</code></pre>
 </div>
@@ -626,29 +626,9 @@ Content-Length: 284
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/v1/categories HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer access-token
 Host: localhost:8080</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="get-all-categories_request_headers"><a class="link" href="#get-all-categories_request_headers">Request headers</a></h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">헤더명</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">설명</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer access-token</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="get-all-categories_http_response"><a class="link" href="#get-all-categories_http_response">HTTP response</a></h4>
@@ -851,7 +831,7 @@ X-Frame-Options: DENY</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2024-06-18 01:05:01 +0900
+Last updated 2024-06-19 00:37:43 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
