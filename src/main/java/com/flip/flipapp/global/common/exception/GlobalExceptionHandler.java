@@ -53,7 +53,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   protected ResponseEntity<ErrorResponse> handleConstraintViolationException(
       ConstraintViolationException e, HttpServletRequest request) {
     log.error(DEFAULT_LOG_MESSAGE, e.getClass(), e.getMessage());
-    return ResponseEntity.badRequest().body(ErrorResponse.of(CommonErrorCode.INVALID_INPUT_VALUE));
+    return ResponseEntity.badRequest().body(ErrorResponse.of(CommonErrorCode.INVALID_REQUEST));
   }
 
   /**
