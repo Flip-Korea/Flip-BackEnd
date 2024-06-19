@@ -20,5 +20,10 @@ include::category.adoc[]
 [[post-api]]
 == POST API
 
+[[comment-api]]
+== COMMENT API
+
+include::comment.adoc[]
+
 [[auth-api]]
 == AUTH API

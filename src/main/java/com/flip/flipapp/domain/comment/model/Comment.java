@@ -12,13 +12,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "comment")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Comment {
 
   @Id
@@ -29,14 +35,15 @@ public class Comment {
   @Column(name = "content", nullable = false, columnDefinition = "text")
   private String content;
 
-  @Column(name = "comment_at", nullable = false, columnDefinition = "datetime")
+  @CreationTimestamp
+  @Column(name = "comment_at", nullable = false, columnDefinition = "datetime", updatable = false)
   private LocalDateTime commentAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
-  private Post postId;
+  private Post post;
 }
