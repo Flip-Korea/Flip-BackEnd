@@ -1,6 +1,5 @@
 package com.flip.flipapp.domain.profile.controller.dto;
 
-import com.flip.flipapp.domain.profile.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
