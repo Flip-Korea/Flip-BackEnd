@@ -33,6 +33,7 @@ public class SecurityConfig {
             .authenticationEntryPoint(customAuthenticationEntryPoint))
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/error/**", "/actuator/**", "/docs/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/profile/check/nickname/{nickname}").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
             .anyRequest().authenticated());
 
