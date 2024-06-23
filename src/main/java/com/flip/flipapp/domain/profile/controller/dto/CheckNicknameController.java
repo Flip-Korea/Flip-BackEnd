@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CheckNicknameController {
 
-  private final ProfileService profileService;
-
   @GetMapping("/api/v1/profile/check/nickname/{nickname}")
   public ResponseEntity<Void> checkNickname(@PathVariable("nickname") String nickname) {
     final String NICKNAME_REGEX = "^[a-zA-Z0-9\\uAC00-\\uD7A3ㄱ-ㅎㅏ-ㅣ]{1,12}$";
