@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.interestCategory.model;
+package com.flip.flipapp.domain.interest_category.model;
 
 import com.flip.flipapp.domain.category.model.Category;
 import com.flip.flipapp.domain.profile.model.Profile;
@@ -26,10 +26,10 @@ public class InterestCategory {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
-  private Category categoryId;
+  private Category category;
 
 }
