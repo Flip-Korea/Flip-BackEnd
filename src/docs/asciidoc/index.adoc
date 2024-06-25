@@ -17,6 +17,11 @@ include::overview.adoc[]
 
 include::category.adoc[]
 
+[[interest-category-api]]
+== INTEREST CATEGORY API
+
+include::interest-category.adoc[]
+
 [[post-api]]
 == POST API
 

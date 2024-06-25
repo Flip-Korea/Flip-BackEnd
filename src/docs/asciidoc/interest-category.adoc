@@ -1,0 +1,4 @@
+[[get-my-categories]]
+=== 나의 카테고리 조회
+
+operation::getMyCategories[snippets='http-request,request-headers,http-response,response-body,response-fields']
