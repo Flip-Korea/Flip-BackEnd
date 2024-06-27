@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.interestCategory.model;
+package com.flip.flipapp.domain.interest_category.model;
 
 import com.flip.flipapp.domain.category.model.Category;
 import com.flip.flipapp.domain.profile.model.Profile;
@@ -11,13 +11,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "interest_category")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class InterestCategory {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +31,10 @@ public class InterestCategory {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
-  private Category categoryId;
+  private Category category;
 
 }
