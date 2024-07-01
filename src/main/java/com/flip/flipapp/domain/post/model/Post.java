@@ -50,10 +50,10 @@ public class Post {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
-  private Category categoryId;
+  private Category category;
 
 }
