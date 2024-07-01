@@ -96,10 +96,6 @@ test {
     useJUnitPlatform()
 }
 
-clean {
-    delete file('src/main/generated')
-}
-
 asciidoctor {
     dependsOn test
     baseDirFollowsSourceFile()
