@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      DB_DATABASE: test_db
+      DB_USER: root
+      DB_PASSWORD: root
       SPRING_PROFILES_ACTIVE: dev
       DOCKERHUB_REPO: ${{ secrets.DOCKERHUB_REPO }}
       DATASOURCE_URL: ${{ secrets.DATASOURCE_URL }}
@@ -19,6 +22,11 @@ jobs:
       SHORT_SHA: ${{ github.sha }}
 
     steps:
+      - name: Setup MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -39,7 +47,10 @@ jobs:
         run: chmod +x gradlew
         shell: bash
 
-      - name: Build with jib
+      - name: build
+        run: ./gradlew build -PtestProfile=test-github
+
+      - name: jib
         run: |
           ./gradlew jib \
           -Djib.to.auth.username=${{ secrets.DOCKERHUB_USERNAME }} \
