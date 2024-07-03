@@ -18,3 +18,8 @@ management:
     web:
       exposure:
         include: "health, info"
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
