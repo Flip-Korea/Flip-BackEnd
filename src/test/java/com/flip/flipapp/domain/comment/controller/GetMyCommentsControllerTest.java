@@ -44,20 +44,26 @@ class GetMyCommentsControllerTest {
            )
            .andDo(
                document("getMyCommentsFirstPage",
-               preprocessRequest(prettyPrint()),
-               preprocessResponse(prettyPrint()),
-               requestHeaders(
-                   headerWithName("Authorization").description("Bearer access-token")
-               ),
-               responseFields(
-                   fieldWithPath("comments[].postId").type(JsonFieldType.NUMBER).description("포스트 ID"),
-                   fieldWithPath("comments[].postWriterNickname").type(JsonFieldType.STRING).description("포스트 작성자 닉네임"),
-                   fieldWithPath("comments[].postTitle").type(JsonFieldType.STRING).description("포스트 제목"),
-                   fieldWithPath("comments[].commentId").type(JsonFieldType.NUMBER).description("댓글 ID"),
-                   fieldWithPath("comments[].commentContent").type(JsonFieldType.STRING).description("댓글 내용"),
-                   fieldWithPath("comments[].commentAt").type(JsonFieldType.STRING).description("댓글 작성 시간"),
-                   fieldWithPath("totalCount").type(JsonFieldType.NUMBER).description("총 댓글 개수")
-               ))
+                   preprocessRequest(prettyPrint()),
+                   preprocessResponse(prettyPrint()),
+                   requestHeaders(
+                       headerWithName("Authorization").description("Bearer access-token")
+                   ),
+                   responseFields(
+                       fieldWithPath("comments[].postId").type(JsonFieldType.NUMBER)
+                                                         .description("포스트 ID"),
+                       fieldWithPath("comments[].postWriterNickname").type(JsonFieldType.STRING)
+                                                                     .description("포스트 작성자 닉네임"),
+                       fieldWithPath("comments[].postTitle").type(JsonFieldType.STRING)
+                                                            .description("포스트 제목"),
+                       fieldWithPath("comments[].commentId").type(JsonFieldType.NUMBER)
+                                                            .description("댓글 ID"),
+                       fieldWithPath("comments[].commentContent").type(JsonFieldType.STRING)
+                                                                 .description("댓글 내용"),
+                       fieldWithPath("comments[].commentAt").type(JsonFieldType.STRING)
+                                                            .description("댓글 작성 시간"),
+                       fieldWithPath("totalCount").type(JsonFieldType.NUMBER).description("총 댓글 개수")
+                   ))
            );
   }
 
@@ -79,19 +85,27 @@ class GetMyCommentsControllerTest {
                    preprocessRequest(prettyPrint()),
                    preprocessResponse(prettyPrint()),
                    queryParameters(
-                     parameterWithName("lastCommentId").description("이전 페이지의 마지막 댓글 ID, 첫 페이지 요청시 필요없음")
+                       parameterWithName("lastCommentId").optional().description(
+                           "이전 페이지의 마지막 댓글 ID, 첫 페이지 요청시 필요없음")
                    ),
                    requestHeaders(
                        headerWithName("Authorization").description("Bearer access-token")
                    ),
                    responseFields(
-                       fieldWithPath("comments[].postId").type(JsonFieldType.NUMBER).description("포스트 ID"),
-                       fieldWithPath("comments[].postWriterNickname").type(JsonFieldType.STRING).description("포스트 작성자 닉네임"),
-                       fieldWithPath("comments[].postTitle").type(JsonFieldType.STRING).description("포스트 제목"),
-                       fieldWithPath("comments[].commentId").type(JsonFieldType.NUMBER).description("댓글 ID"),
-                       fieldWithPath("comments[].commentContent").type(JsonFieldType.STRING).description("댓글 내용"),
-                       fieldWithPath("comments[].commentAt").type(JsonFieldType.STRING).description("댓글 작성 시간"),
-                       fieldWithPath("totalCount").type(JsonFieldType.NUMBER).description("첫 페이지 요청이 아니면 0")
+                       fieldWithPath("comments[].postId").type(JsonFieldType.NUMBER)
+                                                         .description("포스트 ID"),
+                       fieldWithPath("comments[].postWriterNickname").type(JsonFieldType.STRING)
+                                                                     .description("포스트 작성자 닉네임"),
+                       fieldWithPath("comments[].postTitle").type(JsonFieldType.STRING)
+                                                            .description("포스트 제목"),
+                       fieldWithPath("comments[].commentId").type(JsonFieldType.NUMBER)
+                                                            .description("댓글 ID"),
+                       fieldWithPath("comments[].commentContent").type(JsonFieldType.STRING)
+                                                                 .description("댓글 내용"),
+                       fieldWithPath("comments[].commentAt").type(JsonFieldType.STRING)
+                                                            .description("댓글 작성 시간"),
+                       fieldWithPath("totalCount").type(JsonFieldType.NUMBER)
+                                                  .description("첫 페이지 요청이 아니면 0")
                    ))
            );
   }
