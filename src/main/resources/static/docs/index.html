@@ -557,19 +557,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 400 Bad Request
 Content-Type: application/json;charset=UTF-8
-Content-Length: 296
+Content-Length: 284
 
 {
   "code" : "C001",
   "message" : "올바르지 않은 입력 값입니다.",
   "errors" : [ {
-    "field" : "email",
-    "value" : "email",
-    "reason" : "must be a well-formed email address"
-  }, {
     "field" : "name",
     "value" : "",
     "reason" : "must not be blank"
+  }, {
+    "field" : "email",
+    "value" : "email",
+    "reason" : "must be a well-formed email address"
   } ]
 }</code></pre>
 </div>
@@ -657,7 +657,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 225
+Content-Length: 213
 
 [ {
   "categoryId" : 1,
@@ -681,16 +681,16 @@ Content-Length: 225
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
   "categoryId" : 1,
-  "categoryName" : "�씪�긽"
+  "categoryName" : "일상"
 }, {
   "categoryId" : 2,
-  "categoryName" : "IT怨쇳븰"
+  "categoryName" : "IT과학"
 }, {
   "categoryId" : 4,
-  "categoryName" : "�깮媛�"
+  "categoryName" : "생각"
 }, {
   "categoryId" : 3,
-  "categoryName" : "�똻"
+  "categoryName" : "팁"
 } ]</code></pre>
 </div>
 </div>
@@ -778,7 +778,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 116
+Content-Length: 110
 
 [ {
   "categoryId" : 1,
@@ -796,10 +796,10 @@ Content-Length: 116
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
   "categoryId" : 1,
-  "categoryName" : "�씪�긽"
+  "categoryName" : "일상"
 }, {
   "categoryId" : 2,
-  "categoryName" : "IT怨쇳븰"
+  "categoryName" : "IT과학"
 } ]</code></pre>
 </div>
 </div>
@@ -845,7 +845,7 @@ Content-Length: 116
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PUT /api/v1/my/categories HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer access-token
-Content-Length: 35
+Content-Length: 33
 Host: localhost:8080
 
 {
@@ -939,7 +939,7 @@ X-Frame-Options: DENY</code></pre>
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/posts/1/comments HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer access-token
-Content-Length: 29
+Content-Length: 27
 Host: localhost:8080
 
 {
@@ -1080,105 +1080,105 @@ Content-Length: 2800
     "postTitle" : "title2",
     "commentId" : 20,
     "commentContent" : "hi20",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 2,
     "postWriterNickname" : "nickname",
     "postTitle" : "title2",
     "commentId" : 19,
     "commentContent" : "hi19",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 2,
     "postWriterNickname" : "nickname",
     "postTitle" : "title2",
     "commentId" : 18,
     "commentContent" : "hi18",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 17,
     "commentContent" : "hi17",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 16,
     "commentContent" : "hi16",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 2,
     "postWriterNickname" : "nickname",
     "postTitle" : "title2",
     "commentId" : 15,
     "commentContent" : "hi15",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 14,
     "commentContent" : "hi14",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 13,
     "commentContent" : "hi13",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 2,
     "postWriterNickname" : "nickname",
     "postTitle" : "title2",
     "commentId" : 12,
     "commentContent" : "hi12",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 11,
     "commentContent" : "hi11",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 10,
     "commentContent" : "hi10",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 9,
     "commentContent" : "hi9",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 8,
     "commentContent" : "hi8",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 2,
     "postWriterNickname" : "nickname",
     "postTitle" : "title2",
     "commentId" : 7,
     "commentContent" : "hi7",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 6,
     "commentContent" : "hi6",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:23"
   } ],
   "totalCount" : 20
 }</code></pre>
@@ -1324,28 +1324,28 @@ Content-Length: 768
     "postTitle" : "title",
     "commentId" : 4,
     "commentContent" : "hi4",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:24"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 3,
     "commentContent" : "hi3",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:24"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 2,
     "commentContent" : "hi2",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:24"
   }, {
     "postId" : 1,
     "postWriterNickname" : "nickname",
     "postTitle" : "title",
     "commentId" : 1,
     "commentContent" : "hi",
-    "commentAt" : "2024-07-03 15:00:05"
+    "commentAt" : "2024-07-03 15:30:24"
   } ],
   "totalCount" : 0
 }</code></pre>
@@ -1434,7 +1434,7 @@ Content-Length: 768
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/validations/nickname HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 38
+Content-Length: 36
 Host: localhost:8080
 
 {
@@ -1505,7 +1505,7 @@ X-Frame-Options: DENY</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2024-07-02 22:38:45 +0900
+Last updated 2024-07-03 15:29:33 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
