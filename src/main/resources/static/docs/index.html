@@ -472,6 +472,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#auth-api">AUTH API</a></li>
+<li><a href="#profile-api">PROFILE API</a>
+<ul class="sectlevel2">
+<li><a href="#check-nickname">닉네임 유효성 검사</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -551,7 +556,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 400 Bad Request
 Content-Type: application/json;charset=UTF-8
-Content-Length: 284
+Content-Length: 296
 
 {
   "code" : "C001",
@@ -651,7 +656,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 213
+Content-Length: 225
 
 [ {
   "categoryId" : 1,
@@ -675,16 +680,16 @@ Content-Length: 213
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
   "categoryId" : 1,
-  "categoryName" : "일상"
+  "categoryName" : "�씪�긽"
 }, {
   "categoryId" : 2,
-  "categoryName" : "IT과학"
+  "categoryName" : "IT怨쇳븰"
 }, {
   "categoryId" : 4,
-  "categoryName" : "생각"
+  "categoryName" : "�깮媛�"
 }, {
   "categoryId" : 3,
-  "categoryName" : "팁"
+  "categoryName" : "�똻"
 } ]</code></pre>
 </div>
 </div>
@@ -772,7 +777,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 110
+Content-Length: 116
 
 [ {
   "categoryId" : 1,
@@ -790,10 +795,10 @@ Content-Length: 110
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
   "categoryId" : 1,
-  "categoryName" : "일상"
+  "categoryName" : "�씪�긽"
 }, {
   "categoryId" : 2,
-  "categoryName" : "IT과학"
+  "categoryName" : "IT怨쇳븰"
 } ]</code></pre>
 </div>
 </div>
@@ -839,7 +844,7 @@ Content-Length: 110
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PUT /api/v1/my/categories HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer access-token
-Content-Length: 33
+Content-Length: 35
 Host: localhost:8080
 
 {
@@ -933,7 +938,7 @@ X-Frame-Options: DENY</code></pre>
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/posts/1/comments HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer access-token
-Content-Length: 27
+Content-Length: 29
 Host: localhost:8080
 
 {
@@ -1025,11 +1030,89 @@ X-Frame-Options: DENY</code></pre>
 
 </div>
 </div>
+<div class="sect1">
+<h2 id="profile-api"><a class="link" href="#profile-api">PROFILE API</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="check-nickname"><a class="link" href="#check-nickname">닉네임 유효성 검사</a></h3>
+<div class="sect3">
+<h4 id="check-nickname_http_request"><a class="link" href="#check-nickname_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/validations/nickname HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 38
+Host: localhost:8080
+
+{
+  "nickname" : "어스름늑대"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="check-nickname_request_body"><a class="link" href="#check-nickname_request_body">Request body</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "nickname" : "어스름늑대"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="check-nickname_request_fields"><a class="link" href="#check-nickname_request_fields">Request fields</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필드명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">타입</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">제약조건</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2-12자리 한글 및 영문</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">검증할 닉네임</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="check-nickname_http_response"><a class="link" href="#check-nickname_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2024-06-26 21:29:37 +0900
+Last updated 2024-07-02 22:38:45 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
