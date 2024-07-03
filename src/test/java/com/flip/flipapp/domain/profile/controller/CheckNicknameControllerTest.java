@@ -5,15 +5,19 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flip.flipapp.common.SpringBootTestWithRestDocs;
+import com.flip.flipapp.docs.RestDocsAttributeFactory;
 import com.flip.flipapp.domain.profile.controller.dto.request.CheckNicknameRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTestWithRestDocs
@@ -33,11 +37,19 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isOk())
+        .andExpect(
+            status().isOk()
+        )
         .andDo(
-            document("check-nickname-valid",
+            document("checkNickname",
                 preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
+                preprocessResponse(prettyPrint()),
+                requestFields(
+                    fieldWithPath("nickname").attributes(
+                            RestDocsAttributeFactory.constraintsField("2-12자리 한글 및 영문"))
+                        .type(JsonFieldType.STRING)
+                        .description("검증할 닉네임")
+                )
             )
         );
   }
@@ -50,13 +62,7 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isBadRequest())
-        .andDo(
-            document("check-nickname-blank",
-                preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
-            )
-        );
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -67,13 +73,7 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isBadRequest())
-        .andDo(
-            document("check-nickname-invalid",
-                preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
-            )
-        );
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -84,13 +84,7 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isBadRequest())
-        .andDo(
-            document("check-nickname-too-long",
-                preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
-            )
-        );
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -101,13 +95,7 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(nullNickname))
-        .andExpect(status().isBadRequest())
-        .andDo(
-            document("check-nickname-null",
-                preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
-            )
-        );
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -118,12 +106,6 @@ class CheckNicknameControllerTest {
     mockMvc.perform(post("/api/v1/validations/nickname")
             .contentType(APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)))
-        .andExpect(status().isBadRequest())
-        .andDo(
-            document("check-nickname-single-character",
-                preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint())
-            )
-        );
+        .andExpect(status().isBadRequest());
   }
 }

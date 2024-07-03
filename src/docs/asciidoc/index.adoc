@@ -32,3 +32,8 @@ include::comment.adoc[]
 
 [[auth-api]]
 == AUTH API
+
+[[profile-api]]
+== PROFILE API
+
+include::profile.adoc[]
