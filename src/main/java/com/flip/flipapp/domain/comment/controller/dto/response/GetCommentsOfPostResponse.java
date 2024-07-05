@@ -1,5 +1,6 @@
 package com.flip.flipapp.domain.comment.controller.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.flip.flipapp.domain.comment.repository.dto.CommentOfPostDto;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +11,7 @@ public record GetCommentsOfPostResponse(
     long totalCount
 ) {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL) // Null 값 제외
   private record CommentOfPost(
       Long commentId,
       String content,
