@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.flip.flipapp.common.SpringBootTestWithRestDocs;
+import com.flip.flipapp.docs.RestDocsAttributeFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,11 @@ class GetMyCommentsControllerTest {
   void should_return_status_200_with_mycomments_and_totalCount_when_first_page_request()
       throws Exception {
     mockMvc.perform(get("/api/v1/my/comments")
+               .param("limit", "5")
                .header("Authorization", "Bearer access-token"))
            .andExpectAll(
                status().isOk(),
-               jsonPath("$.comments.size()").value(15),
+               jsonPath("$.comments.size()").value(5),
                jsonPath("$.totalCount").value(20)
            )
            .andDo(
@@ -48,6 +50,14 @@ class GetMyCommentsControllerTest {
                    preprocessResponse(prettyPrint()),
                    requestHeaders(
                        headerWithName("Authorization").description("Bearer access-token")
+                   ),
+                   queryParameters(
+                       parameterWithName("cursor")
+                           .attributes(RestDocsAttributeFactory.constraintsField("MIN 1"))
+                           .optional().description("이전 페이지의 마지막 댓글 ID, 첫 페이지 요청시 필요없음"),
+                       parameterWithName("limit")
+                           .attributes(RestDocsAttributeFactory.constraintsField("MIN 1"))
+                           .description("한 페이지에 보여줄 댓글 개수")
                    ),
                    responseFields(
                        fieldWithPath("comments[].postId").type(JsonFieldType.NUMBER)
@@ -73,7 +83,8 @@ class GetMyCommentsControllerTest {
   @WithMockUser(username = "1")
   void should_return_status_200_with_mycomments_when_next_page_request() throws Exception {
     mockMvc.perform(get("/api/v1/my/comments")
-               .param("lastCommentId", "5")
+               .param("limit", "5")
+               .param("cursor", "5")
                .header("Authorization", "Bearer access-token"))
            .andExpectAll(
                status().isOk(),
@@ -85,8 +96,12 @@ class GetMyCommentsControllerTest {
                    preprocessRequest(prettyPrint()),
                    preprocessResponse(prettyPrint()),
                    queryParameters(
-                       parameterWithName("lastCommentId").optional().description(
-                           "이전 페이지의 마지막 댓글 ID, 첫 페이지 요청시 필요없음")
+                       parameterWithName("cursor")
+                           .attributes(RestDocsAttributeFactory.constraintsField("MIN 1"))
+                           .optional().description("이전 페이지의 마지막 댓글 ID, 첫 페이지 요청시 필요없음"),
+                       parameterWithName("limit")
+                           .attributes(RestDocsAttributeFactory.constraintsField("MIN 1"))
+                           .description("한 페이지에 보여줄 댓글 개수")
                    ),
                    requestHeaders(
                        headerWithName("Authorization").description("Bearer access-token")
