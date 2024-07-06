@@ -34,22 +34,24 @@ public class CommentRepositoryImpl implements CommentRepositoryCustom {
   @Override
   public Page<MyCommentPageDto> findMyCommentsPage(MyCommentsPageCondition condition) {
     List<MyCommentPageDto> content = queryFactory
-        .select(new QMyCommentPageDto(
-            post.postId,
-            post.profile.nickname,
-            post.title,
-            comment.commentId,
-            comment.content,
-            comment.commentAt
-        ))
+        .select(
+            new QMyCommentPageDto(
+                post.postId,
+                post.profile.nickname,
+                post.title,
+                comment.commentId,
+                comment.content,
+                comment.commentAt
+            ))
         .from(comment)
         .join(comment.post, post)
         .join(post.profile, profile)
         .where(
             comment.profile.profileId.eq(condition.profileId())
-                                     .and(ltCommentId(condition.CommentId())))
+                                     .and(ltCommentId(condition.cursor()))
+        )
         .orderBy(comment.commentId.desc())
-        .limit(condition.pageSize())
+        .limit(condition.limit())
         .fetch();
 
     JPAQuery<Long> countQuery = queryFactory
@@ -57,7 +59,7 @@ public class CommentRepositoryImpl implements CommentRepositoryCustom {
         .from(comment)
         .where(comment.profile.profileId.eq(condition.profileId()));
 
-    if (condition.CommentId() == null) {
+    if (condition.cursor() == null) {
       return new PageImpl<>(content, Pageable.unpaged(), countQuery.fetchOne());
     } else {
       return new PageImpl<>(content, Pageable.unpaged(), 0);
