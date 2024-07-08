@@ -34,6 +34,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/error/**", "/actuator/**", "/docs/**").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/v1/validations/nickname").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/v1/validations/user-id").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
             .anyRequest().authenticated());
 
