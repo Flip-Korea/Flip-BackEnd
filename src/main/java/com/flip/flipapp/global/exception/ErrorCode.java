@@ -1,4 +1,4 @@
-package com.flip.flipapp.global.common.exception;
+package com.flip.flipapp.global.exception;
 
 public interface ErrorCode {
 

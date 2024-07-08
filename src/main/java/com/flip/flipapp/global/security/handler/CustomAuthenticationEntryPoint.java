@@ -1,10 +1,10 @@
 package com.flip.flipapp.global.security.handler;
 
-import static com.flip.flipapp.global.common.exception.CommonErrorCode.UNAUTHENTICATED;
+import static com.flip.flipapp.global.exception.CommonErrorCode.UNAUTHENTICATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flip.flipapp.global.common.exception.ErrorResponse;
+import com.flip.flipapp.global.exception.ErrorResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.flip.flipapp.global.common.exception;
+package com.flip.flipapp.global.exception;
 
 import java.util.ArrayList;
 import java.util.List;
