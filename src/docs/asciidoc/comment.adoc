@@ -3,8 +3,17 @@
 operation::addComment[snippets='http-request,request-headers,request-body,request-fields,http-response']
 
 === 나의 댓글 조회
+
 ==== 첫 페이지 조회
-operation::getMyCommentsFirstPage[snippets='http-request,request-headers,http-response,response-fields']
+operation::getMyCommentsFirstPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
 
 ==== 다음 페이지 조회
 operation::getMyCommentsNextPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
+
+=== 포스트의 댓글 조회
+
+==== 첫 페이지 조회
+operation::getCommentsOfPostFirstPage[snippets='http-request,request-headers,path-parameters,query-parameters,http-response,response-fields']
+
+==== 다음 페이지 조회
+operation::getCommentsOfPostNextPage[snippets='http-request,request-headers,path-parameters,query-parameters,http-response,response-fields']
