@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.comment.exception;
 
-import com.flip.flipapp.global.common.exception.BusinessException;
+import com.flip.flipapp.global.exception.BusinessException;
 
 public class NotCommentWriterException extends BusinessException {
 

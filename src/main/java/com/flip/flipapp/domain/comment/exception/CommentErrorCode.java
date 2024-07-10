@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.comment.exception;
 
-import com.flip.flipapp.global.common.exception.ErrorCode;
+import com.flip.flipapp.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
