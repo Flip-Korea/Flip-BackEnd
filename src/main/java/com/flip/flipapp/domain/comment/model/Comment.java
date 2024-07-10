@@ -1,5 +1,7 @@
 package com.flip.flipapp.domain.comment.model;
 
+import com.flip.flipapp.domain.comment.exception.InvalidPostOfCommentException;
+import com.flip.flipapp.domain.comment.exception.NotCommentWriterException;
 import com.flip.flipapp.domain.post.model.Post;
 import com.flip.flipapp.domain.profile.model.Profile;
 import jakarta.persistence.Column;
@@ -46,4 +48,16 @@ public class Comment {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
   private Post post;
+
+  public void checkWriter(Long profileId) {
+    if (!profile.getProfileId().equals(profileId)) {
+      throw new NotCommentWriterException();
+    }
+  }
+
+  public void checkPostRelation(Long postId) {
+    if (!post.getPostId().equals(postId)) {
+      throw new InvalidPostOfCommentException();
+    }
+  }
 }
