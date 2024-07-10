@@ -12,7 +12,7 @@ spring :
         - flyway
       test-local:
         - test
-        - localdb
+        - test-localdb
         - flyway
       test-github:
         - test
