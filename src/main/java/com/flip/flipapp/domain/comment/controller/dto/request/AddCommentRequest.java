@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.comment.controller.dto.request;
 
-import com.flip.flipapp.domain.comment.service.AddCommentCommand;
+import com.flip.flipapp.domain.comment.service.dto.AddCommentCommand;
 import jakarta.validation.constraints.NotBlank;
 
 public record AddCommentRequest(

@@ -2,6 +2,7 @@ package com.flip.flipapp.domain.comment.service;
 
 import com.flip.flipapp.domain.comment.model.Comment;
 import com.flip.flipapp.domain.comment.repository.CommentRepository;
+import com.flip.flipapp.domain.comment.service.dto.AddCommentCommand;
 import com.flip.flipapp.domain.post.exception.PostNotFoundException;
 import com.flip.flipapp.domain.post.model.Post;
 import com.flip.flipapp.domain.post.repository.PostRepository;
