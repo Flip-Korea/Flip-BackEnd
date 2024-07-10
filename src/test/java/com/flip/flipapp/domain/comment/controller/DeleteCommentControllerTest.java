@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.flip.flipapp.common.SpringBootTestWithRestDocs;
 import com.flip.flipapp.docs.RestDocsAttributeFactory;
 import com.flip.flipapp.domain.comment.exception.CommentNotFoundException;
-import com.flip.flipapp.domain.comment.exception.InvalidPostOfComment;
+import com.flip.flipapp.domain.comment.exception.InvalidPostOfCommentException;
 import com.flip.flipapp.domain.comment.exception.NotCommentWriterException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -79,7 +79,7 @@ class DeleteCommentControllerTest {
            .andExpectAll(
                status().isBadRequest(),
                result -> assertThat(result.getResolvedException())
-                   .isInstanceOf(InvalidPostOfComment.class));
+                   .isInstanceOf(InvalidPostOfCommentException.class));
   }
 
   @Test
