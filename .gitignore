@@ -28,4 +28,5 @@ out/
 !**/src/test/**/out/
 
 application-localdb.yml
+application-test-localdb.yml
 **/src/**/index.html
