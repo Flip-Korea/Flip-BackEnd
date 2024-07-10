@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.interest_category.exception;
 
-import com.flip.flipapp.global.common.exception.BusinessException;
+import com.flip.flipapp.global.exception.BusinessException;
 
 public class InterestCategoryRelationException extends BusinessException {
 

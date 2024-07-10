@@ -2,3 +2,8 @@
 === 닉네임 유효성 검사
 
 operation::checkNickname[snippets='http-request,request-body,request-fields,http-response']
+
+[[check-user-id]]
+=== 아이디 유효성 검사
+
+operation::checkUserId[snippets='http-request,request-body,request-fields,http-response']

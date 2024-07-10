@@ -1,4 +1,4 @@
-package com.flip.flipapp.global.common.exception;
+package com.flip.flipapp.global.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;

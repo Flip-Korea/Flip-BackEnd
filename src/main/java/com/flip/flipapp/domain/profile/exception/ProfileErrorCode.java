@@ -1,11 +1,12 @@
-package com.flip.flipapp.domain.post.exception;
+package com.flip.flipapp.domain.profile.exception;
 
 import com.flip.flipapp.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum PostErrorCode implements ErrorCode {
-  POST_NOT_FOUND("P001", "해당 포스트가 존재하지않습니다.", 404);
+public enum ProfileErrorCode implements ErrorCode {
+
+  PROFILE_DUPLICATE_USER_ID("P001", "중복된 사용자 아이디입니다.", 409);
 
   private final String code;
   private final String message;
@@ -25,4 +26,5 @@ public enum PostErrorCode implements ErrorCode {
   public int getStatus() {
     return this.status;
   }
+
 }
