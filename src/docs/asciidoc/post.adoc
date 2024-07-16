@@ -1,0 +1,3 @@
+[[add-post]]
+=== 포스트 작성
+operation::addPost[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']

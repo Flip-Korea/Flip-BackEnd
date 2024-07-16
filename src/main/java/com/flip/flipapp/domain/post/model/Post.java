@@ -1,7 +1,7 @@
 package com.flip.flipapp.domain.post.model;
 
-import com.flip.flipapp.domain.profile.model.Profile;
 import com.flip.flipapp.domain.category.model.Category;
+import com.flip.flipapp.domain.profile.model.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,13 +14,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "post")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Post {
 
   @Id
@@ -34,7 +40,8 @@ public class Post {
   @Column(name = "content", nullable = false, columnDefinition = "text")
   private String content;
 
-  @Column(name = "post_at", nullable = false, columnDefinition = "datetime")
+  @Column(name = "post_at", nullable = false, columnDefinition = "datetime", updatable = false)
+  @CreationTimestamp
   private LocalDateTime postAt;
 
   @Enumerated(EnumType.STRING)

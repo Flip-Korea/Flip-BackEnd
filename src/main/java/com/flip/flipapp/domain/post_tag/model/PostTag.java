@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.postTag.model;
+package com.flip.flipapp.domain.post_tag.model;
 
 import com.flip.flipapp.domain.post.model.Post;
 import com.flip.flipapp.domain.tag.model.Tag;
@@ -11,13 +11,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "post_tag")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor
 public class PostTag {
 
   @Id
@@ -27,11 +32,11 @@ public class PostTag {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
-  private Post postId;
+  private Post post;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "tag_id", nullable = false, columnDefinition = "bigint")
-  private Tag tagId;
+  private Tag tag;
 
 }
 

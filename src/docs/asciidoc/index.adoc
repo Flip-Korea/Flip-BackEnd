@@ -25,6 +25,10 @@ include::interest-category.adoc[]
 [[post-api]]
 == POST API
 
+include::post.adoc[]
+
+[[user-api]]
+
 [[comment-api]]
 == COMMENT API
 
