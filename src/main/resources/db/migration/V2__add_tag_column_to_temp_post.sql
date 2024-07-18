@@ -1,0 +1,2 @@
+ALTER TABLE temp_post
+    ADD COLUMN tags VARCHAR(255) NOT NULL DEFAULT '';

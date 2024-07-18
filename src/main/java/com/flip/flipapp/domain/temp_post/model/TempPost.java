@@ -1,10 +1,12 @@
-package com.flip.flipapp.domain.tempPost.model;
+package com.flip.flipapp.domain.temp_post.model;
 
 import com.flip.flipapp.domain.category.model.Category;
 import com.flip.flipapp.domain.post.model.BgColorType;
 import com.flip.flipapp.domain.post.model.FontStyleType;
 import com.flip.flipapp.domain.profile.model.Profile;
+import com.flip.flipapp.global.persistence.StringListConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,13 +18,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "temp_post")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class TempPost {
 
   @Id
@@ -37,6 +46,7 @@ public class TempPost {
   private String content;
 
   @Column(name = "post_at", nullable = false, columnDefinition = "datetime")
+  @CreationTimestamp
   private LocalDateTime postAt;
 
   @Enumerated(EnumType.STRING)
@@ -49,10 +59,25 @@ public class TempPost {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
-  private Category categoryId;
+  private Category category;
 
+  @Convert(converter = StringListConverter.class)
+  @Column(name = "tags", nullable = false, columnDefinition = "varchar(255)")
+  private List<String> tags;
+
+  public static class TempPostBuilder {
+    public TempPostBuilder content(String content) {
+      if (content.isBlank()) {
+        this.content = "";
+      } else {
+        this.content = content;
+      }
+
+      return this;
+    }
+  }
 }
