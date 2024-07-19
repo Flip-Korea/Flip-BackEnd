@@ -1,0 +1,3 @@
+[[add-temp-post]]
+=== 임시 포스트 작성
+operation::addTempPost[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
