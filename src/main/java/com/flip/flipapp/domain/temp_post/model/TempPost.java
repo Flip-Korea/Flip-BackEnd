@@ -70,6 +70,7 @@ public class TempPost {
   private List<String> tags;
 
   public static class TempPostBuilder {
+
     public TempPostBuilder content(String content) {
       if (content.isBlank()) {
         this.content = "";
@@ -79,5 +80,9 @@ public class TempPost {
 
       return this;
     }
+  }
+
+  public boolean isWriter(Long profileId) {
+    return profile.getProfileId().equals(profileId);
   }
 }

@@ -1,3 +1,9 @@
 [[add-temp-post]]
 === 임시 포스트 작성
+
 operation::addTempPost[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
+
+[[delete-temp-post]]
+=== 임시 포스트 삭제
+
+operation::deleteTempPost[snippets='http-request,request-headers,path-parameters,http-response']
