@@ -27,6 +27,11 @@ include::interest-category.adoc[]
 
 include::post.adoc[]
 
+[[temp-post-api]]
+== TEMP POST API
+
+include::temp-post.adoc[]
+
 [[user-api]]
 
 [[comment-api]]

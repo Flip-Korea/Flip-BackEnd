@@ -16,7 +16,7 @@ public class CleanUpTestExecutionListener extends AbstractTestExecutionListener 
 
   private List<String> getTruncateQueries(final JdbcTemplate jdbcTemplate) {
     return jdbcTemplate.queryForList(
-        "SELECT Concat('TRUNCATE TABLE ', TABLE_NAME, ';') AS q FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = DATABASE()",
+        "SELECT Concat('TRUNCATE TABLE ', TABLE_NAME, ';') AS q FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME != 'flyway_schema_history'",
         String.class);
   }
 
