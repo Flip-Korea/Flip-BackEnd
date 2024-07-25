@@ -85,4 +85,15 @@ public class TempPost {
   public boolean isWriter(Long profileId) {
     return profile.getProfileId().equals(profileId);
   }
+
+  public void modifyTo(TempPost newTempPost){
+    this.title = newTempPost.title;
+    this.content = newTempPost.content;
+    this.bgColor = newTempPost.bgColor;
+    this.fontStyle = newTempPost.fontStyle;
+    this.category = newTempPost.category;
+    this.tags = newTempPost.tags;
+    this.postAt = LocalDateTime.now();
+  }
+
 }
