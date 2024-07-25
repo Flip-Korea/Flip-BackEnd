@@ -8,6 +8,11 @@ operation::addTempPost[snippets='http-request,request-headers,request-body,reque
 
 operation::deleteTempPost[snippets='http-request,request-headers,path-parameters,http-response']
 
+[[modify-temp-post]]
+=== 임시 포스트 수정
+
+operation::modifyTempPost[snippets='http-request,request-headers,path-parameters,request-body,request-fields,http-response']
+
 [[get-temp-post]]
 === 임시 포스트 조회
 
