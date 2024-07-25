@@ -7,3 +7,14 @@ operation::addTempPost[snippets='http-request,request-headers,request-body,reque
 === 임시 포스트 삭제
 
 operation::deleteTempPost[snippets='http-request,request-headers,path-parameters,http-response']
+
+[[get-temp-post]]
+=== 임시 포스트 조회
+
+==== 첫 페이지 조회
+
+operation::getTempPostsFirstPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
+
+==== 다음 페이지 조회
+
+operation::getTempPostsNextPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']

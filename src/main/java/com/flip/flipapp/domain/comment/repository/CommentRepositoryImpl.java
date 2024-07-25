@@ -87,6 +87,7 @@ public class CommentRepositoryImpl implements CommentRepositoryCustom {
             comment.post.postId.eq(condition.postId())
                                .and(gtCommentId(condition.cursor()))
         )
+        .orderBy(comment.commentId.asc())
         .limit(condition.limit())
         .fetch();
 
