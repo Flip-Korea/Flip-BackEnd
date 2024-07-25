@@ -1,5 +1,6 @@
 package com.flip.flipapp.domain.temp_post.repository;
 
+import static com.flip.flipapp.domain.category.model.QCategory.category;
 import static com.flip.flipapp.domain.temp_post.model.QTempPost.tempPost;
 
 import com.flip.flipapp.domain.temp_post.model.TempPost;
@@ -28,10 +29,12 @@ public class TempPostRepositoryImpl implements TempPostRepositoryCustom {
     List<TempPost> content = queryFactory
         .select(tempPost)
         .from(tempPost)
+        .join(tempPost.category, category).fetchJoin()
         .where(
             tempPost.profile.profileId.eq(condition.profileId())
                                       .and(gtTempPostId(condition.cursor()))
         )
+        .orderBy(tempPost.postId.asc())
         .limit(condition.limit())
         .fetch();
 
