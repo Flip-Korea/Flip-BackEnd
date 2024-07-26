@@ -4,6 +4,7 @@ import com.flip.flipapp.domain.category.exception.CategoryNotFoundException;
 import com.flip.flipapp.domain.category.model.Category;
 import com.flip.flipapp.domain.category.repository.CategoryRepository;
 import com.flip.flipapp.domain.post.model.Post;
+import com.flip.flipapp.domain.post.model.PostState;
 import com.flip.flipapp.domain.post.repository.PostRepository;
 import com.flip.flipapp.domain.post.service.dto.AddPostCommand;
 import com.flip.flipapp.domain.post_tag.model.PostTag;
@@ -38,6 +39,7 @@ public class AddPostService {
                        .likeCnt(0L)
                        .profile(Profile.getAuthenticatedProfile(command.profileId()))
                        .category(findCategory(command.categoryId()))
+                       .postState(PostState.CREATED)
                        .build();
 
     Post savedPost = postRepository.save(newPost);
