@@ -63,4 +63,15 @@ public class Post {
   @JoinColumn(name = "category_id", nullable = false, columnDefinition = "bigint")
   private Category category;
 
+  @Enumerated(EnumType.STRING)
+  @Column(name = "post_state", nullable = false, columnDefinition = "varchar(25)")
+  PostState postState;
+
+  public boolean isWriter(Long profileId) {
+    return profile.getProfileId().equals(profileId);
+  }
+
+  public void delete() {
+    this.postState = PostState.DELETED;
+  }
 }
