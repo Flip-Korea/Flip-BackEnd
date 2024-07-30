@@ -25,6 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostTag {
 
+  public static final int MAX_TAG_COUNT = 10;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "post_tag_id", nullable = false, columnDefinition = "bigint")
