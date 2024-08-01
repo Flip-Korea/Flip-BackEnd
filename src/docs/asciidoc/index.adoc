@@ -33,7 +33,6 @@ include::post.adoc[]
 include::temp-post.adoc[]
 
 [[user-api]]
-
 [[comment-api]]
 == COMMENT API
 
@@ -46,3 +45,8 @@ include::comment.adoc[]
 == PROFILE API
 
 include::profile.adoc[]
+
+[[scrap-api]]
+== SCRAP API
+
+include::scrap.adoc[]

@@ -1,7 +1,7 @@
 package com.flip.flipapp.domain.scrap.model;
 
-import com.flip.flipapp.domain.profile.model.Profile;
 import com.flip.flipapp.domain.post.model.Post;
+import com.flip.flipapp.domain.profile.model.Profile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,13 +11,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "scrap")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Scrap {
 
   @Id
@@ -30,10 +35,10 @@ public class Scrap {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "profile_id", nullable = false, columnDefinition = "bigint")
-  private Profile profileId;
+  private Profile profile;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
-  private Post postId;
+  private Post post;
 
 }
