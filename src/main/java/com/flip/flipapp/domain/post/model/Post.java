@@ -74,4 +74,12 @@ public class Post {
   public void delete() {
     this.postState = PostState.DELETED;
   }
+
+  public void modifyTo(Post newPost) {
+    this.title = newPost.title;
+    this.content = newPost.content;
+    this.bgColor = newPost.bgColor;
+    this.fontStyle = newPost.fontStyle;
+    this.category = newPost.category;
+  }
 }

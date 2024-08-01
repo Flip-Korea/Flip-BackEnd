@@ -7,3 +7,8 @@ operation::addPost[snippets='http-request,request-headers,request-body,request-f
 === 포스트 삭제
 
 operation::deletePost[snippets='http-request,request-headers,path-parameters,http-response']
+
+[[modify-post]]
+=== 포스트 수정
+
+operation::modifyPost[snippets='http-request,request-headers,path-parameters,request-body,request-fields,http-response']
