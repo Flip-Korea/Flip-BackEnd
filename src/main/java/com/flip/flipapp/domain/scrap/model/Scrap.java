@@ -44,4 +44,8 @@ public class Scrap {
   public boolean isOwner(Long profileId) {
     return this.profile.getProfileId().equals(profileId);
   }
+
+  public void modifyTo(Scrap newScrap){
+    this.scrapComment = newScrap.getScrapComment();
+  }
 }
