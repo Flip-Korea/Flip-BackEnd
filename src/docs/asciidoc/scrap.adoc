@@ -7,3 +7,8 @@ operation::addScrap[snippets='http-request,request-headers,request-body,request-
 === 스크랩 삭제
 
 operation::deleteScrap[snippets='http-request,request-headers,path-parameters,http-response']
+
+[[modify-scrap]]
+=== 스크랩 수정
+
+operation::modifyScrap[snippets='http-request,request-headers,path-parameters,request-body,request-fields,http-response']
