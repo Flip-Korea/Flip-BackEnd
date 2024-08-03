@@ -41,4 +41,7 @@ public class Scrap {
   @JoinColumn(name = "post_id", nullable = false, columnDefinition = "bigint")
   private Post post;
 
+  public boolean isOwner(Long profileId) {
+    return this.profile.getProfileId().equals(profileId);
+  }
 }
