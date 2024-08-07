@@ -5,7 +5,7 @@ import com.flip.flipapp.domain.profile.model.Profile;
 import com.flip.flipapp.domain.scrap.model.Scrap;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ScrapRepository extends JpaRepository<Scrap, Long> {
+public interface ScrapRepository extends JpaRepository<Scrap, Long>, ScrapRepositoryCustom {
 
   boolean existsByProfileAndPost(Profile profile, Post post);
 }
