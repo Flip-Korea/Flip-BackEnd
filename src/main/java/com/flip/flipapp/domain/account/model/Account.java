@@ -8,13 +8,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "account")
 @Getter
-@NoArgsConstructor
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Account {
 
   @Id
@@ -31,4 +39,8 @@ public class Account {
 
   @Column(name = "recent_login", nullable = false, columnDefinition = "bigint")
   private Long recentLogin;
+
+  @Column(name = "suspended_at", columnDefinition = "datetime")
+  private LocalDateTime suspendedAt;
+
 }
