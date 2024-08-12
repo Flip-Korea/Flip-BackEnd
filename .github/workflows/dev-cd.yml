@@ -20,6 +20,7 @@ jobs:
       DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
       DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
       SHORT_SHA: ${{ github.sha }}
+      JWT_KEY: ${{ secrets.JWT_KEY }}
 
     steps:
       - name: Setup MySQL
