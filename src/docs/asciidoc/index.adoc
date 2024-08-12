@@ -50,3 +50,8 @@ include::profile.adoc[]
 == SCRAP API
 
 include::scrap.adoc[]
+
+[[account-api]]
+== ACCOUNT API
+
+include::account.adoc[]
