@@ -12,3 +12,11 @@ operation::deleteScrap[snippets='http-request,request-headers,path-parameters,ht
 === 스크랩 수정
 
 operation::modifyScrap[snippets='http-request,request-headers,path-parameters,request-body,request-fields,http-response']
+
+=== 나의 스크랩 조회
+
+==== 첫 페이지 조회
+operation::getMyScrapsFirstPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
+
+==== 다음 페이지 조회
+operation::getMyScrapsNextPage[snippets='http-request,request-headers,query-parameters,http-response,response-fields']
