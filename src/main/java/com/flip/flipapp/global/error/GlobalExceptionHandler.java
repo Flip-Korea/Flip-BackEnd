@@ -1,5 +1,6 @@
-package com.flip.flipapp.global.exception;
+package com.flip.flipapp.global.error;
 
+import com.flip.flipapp.global.error.exception.BusinessException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     log.error(DEFAULT_LOG_MESSAGE, ex.getClass(), ex.getMessage());
 
     return ResponseEntity.internalServerError()
-                         .body(ErrorResponse.of(CommonErrorCode.INTERNAL_SERVER_ERROR));
+        .body(ErrorResponse.of(CommonErrorCode.INTERNAL_SERVER_ERROR));
   }
 
   /**
@@ -67,6 +68,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       HttpServletRequest request) {
     log.error(DEFAULT_LOG_MESSAGE, e.getClass(), e.getMessage());
     return ResponseEntity.status(e.getErrorCode().getStatus())
-                         .body(ErrorResponse.of(e.getErrorCode()));
+
+        .body(ErrorResponse.of(e.getErrorCode()));
   }
 }
