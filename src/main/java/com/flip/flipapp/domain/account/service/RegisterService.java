@@ -33,7 +33,6 @@ public class RegisterService {
   public JwtResponse register(RegisterRequest registerRequest) {
     Account account = Account.builder()
         .oauthId(registerRequest.oauthId())
-        .accountState(AccountState.ACTIVE)
         .recentLogin(-1L)
         .build();
 

@@ -34,6 +34,7 @@ public class Account {
   private String oauthId;
 
   @Enumerated(EnumType.STRING)
+  @Builder.Default
   @Column(name = "account_state", nullable = false, columnDefinition = "varchar(25)")
   private AccountState accountState = AccountState.ACTIVE;
 
