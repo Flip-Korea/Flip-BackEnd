@@ -50,3 +50,8 @@ include::profile.adoc[]
 == SCRAP API
 
 include::scrap.adoc[]
+
+[[follow-api]]
+== FOLLOW API
+
+include::follow.adoc[]

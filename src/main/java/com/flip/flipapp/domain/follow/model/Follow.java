@@ -11,15 +11,22 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 @Entity
 @Table(name = "follow")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Follow {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "follow_id", nullable = false, columnDefinition = "bigint")
@@ -27,13 +34,14 @@ public class Follow {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "following_id", nullable = false, columnDefinition = "bigint")
-  private Profile followingId;
+  private Profile following;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "follower_id", nullable = false, columnDefinition = "bigint")
-  private Profile followerId;
+  private Profile follower;
 
-  @Column(name = "fallow_at", nullable = false, columnDefinition = "datetime")
+  @Column(name = "fallow_at", nullable = false, columnDefinition = "datetime", updatable = false)
+  @CreationTimestamp
   private LocalDateTime fallowAt;
 
 }
