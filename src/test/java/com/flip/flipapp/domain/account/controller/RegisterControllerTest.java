@@ -30,18 +30,22 @@ class RegisterControllerTest {
   MockMvc mockMvc;
 
   @Autowired
+
   ObjectMapper objectMapper;
 
   RegisterRequest validRequest = new RegisterRequest("oauth123",
       List.of(1L, 2L, 3L),
       new UserProfile("user123", "nickname123", "https://maybe-storage-server.com/11"));
 
+  RegisterRequest invalidCategoryRequest = new RegisterRequest("oauth123",
+      List.of(1L, 2L, 7L),
+      new UserProfile("user123", "nickname123", "https://maybe-storage-server.com/11"));
 
   @Test
   @DisplayName("유효한 요청으로 회원가입을 하면 200 응답을 반환한다")
   @Sql("RegisterControllerTest.sql")
   void should_return_200_when_request_is_valid() throws Exception {
-    mockMvc.perform(post("/api/v1/account/register")
+    mockMvc.perform(post("/api/v1/accounts")
             .content(objectMapper.writeValueAsBytes(validRequest))
             .contentType(APPLICATION_JSON))
         .andExpect(status().isOk())
@@ -64,7 +68,7 @@ class RegisterControllerTest {
                         .type(JsonFieldType.STRING)
                         .description("사용자 닉네임"),
                     fieldWithPath("profile.photoUrl").attributes(
-                            constraintsField("프로필 사진 미설정 시 \" \"으로 전달"))
+                            constraintsField("프로필 사진 미설정 시 null 으로 전달"))
                         .type(JsonFieldType.STRING)
                         .description("프로필 사진 URL")
                 )
@@ -72,4 +76,13 @@ class RegisterControllerTest {
         );
   }
 
+  @Test
+  @DisplayName("존재하지 않는 카테고리로 요청 시 400 응답을 반환한다")
+  @Sql("RegisterControllerTest.sql")
+  void should_return_400_when_category_is_invalid() throws Exception {
+    mockMvc.perform(post("/api/v1/accounts")
+            .content(objectMapper.writeValueAsBytes(invalidCategoryRequest))
+            .contentType(APPLICATION_JSON))
+        .andExpect(status().isBadRequest());
+  }
 }
