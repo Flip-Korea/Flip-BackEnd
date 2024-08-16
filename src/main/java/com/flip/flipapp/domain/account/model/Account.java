@@ -14,12 +14,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "account")
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
@@ -38,10 +36,13 @@ public class Account {
   @Column(name = "account_state", nullable = false, columnDefinition = "varchar(25)")
   private AccountState accountState = AccountState.ACTIVE;
 
-  @Column(name = "recent_login", nullable = false, columnDefinition = "bigint")
+  @Column(name = "recent_login", columnDefinition = "bigint")
   private Long recentLogin;
 
   @Column(name = "suspended_at", columnDefinition = "datetime")
   private LocalDateTime suspendedAt;
 
+  public void setRecentLogin(Long accountId) {
+    this.recentLogin = accountId;
+  }
 }

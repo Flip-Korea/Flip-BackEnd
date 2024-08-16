@@ -3,12 +3,15 @@ package com.flip.flipapp.global.security.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flip.flipapp.global.error.ErrorResponse;
 import com.flip.flipapp.global.error.exception.BusinessException;
+import com.flip.flipapp.global.error.exception.CustomExpiredJwtException;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JwtFilter extends OncePerRequestFilter {
 
   private final JwtProvider jwtProvider;
@@ -39,10 +43,10 @@ public class JwtFilter extends OncePerRequestFilter {
         Authentication authentication = getAuthentication(userDetails);
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
-      filterChain.doFilter(request, response);
-    } catch (BusinessException e) {
-      handleException(response, e);
+    }catch (BusinessException e) {
+      log.info("Exception: {}, Message: {}", e.getClass(), e.getMessage());
     }
+    filterChain.doFilter(request, response);
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
@@ -57,10 +61,10 @@ public class JwtFilter extends OncePerRequestFilter {
     return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
   }
 
-  private UserDetails getUserDetails(String accountId) {
+  private UserDetails getUserDetails(String profileId) {
 
     return User.builder()
-        .username(accountId)
+        .username(profileId)
         .password("")
         .authorities("ROLE_USER")
         .build();

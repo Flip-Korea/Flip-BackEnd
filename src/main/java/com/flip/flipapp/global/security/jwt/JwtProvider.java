@@ -35,8 +35,6 @@ public class JwtProvider {
   public String createToken(Long profileId, long expirationTime) {
 
     return Jwts.builder()
-        .setHeaderParam("alg", "HS256")
-        .setHeaderParam("typ", "JWT")
         .setIssuer("flip")
         .setSubject(
             profileId.toString())
