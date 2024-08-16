@@ -55,3 +55,8 @@ include::scrap.adoc[]
 == ACCOUNT API
 
 include::account.adoc[]
+
+[[follow-api]]
+== FOLLOW API
+
+include::follow.adoc[]
