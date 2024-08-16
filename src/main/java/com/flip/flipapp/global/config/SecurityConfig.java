@@ -39,7 +39,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.POST, "/api/v1/validations/nickname").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/v1/validations/user-id").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/v1/account/login").permitAll()
-            .requestMatchers(HttpMethod.POST, "/api/v1/account/register").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/v1/accounts").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
             .anyRequest().authenticated())
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
