@@ -1,2 +1,0 @@
-ALTER TABLE account
-    ADD COLUMN suspended_at DATETIME NULL DEFAULT NULL;
