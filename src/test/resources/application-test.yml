@@ -3,7 +3,11 @@ spring:
     hibernate:
       ddl-auto: validate
     open-in-view: false
+
 logging:
   level:
     org.springframework.security: trace
     com.zaxxer.hikari: debug
+
+jwt:
+  secret: flip-secret-key-for-test-environment-please-update-to-a-secure-key

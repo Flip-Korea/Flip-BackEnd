@@ -1,5 +1,6 @@
-package com.flip.flipapp.global.exception;
+package com.flip.flipapp.global.error.exception;
 
+import com.flip.flipapp.global.error.ErrorCode;
 import lombok.Getter;
 
 @Getter
@@ -16,6 +17,10 @@ public class BusinessException extends RuntimeException {
   public BusinessException(ErrorCode errorCode, String message) {
     super(message);
     this.errorCode = errorCode;
+  }
+
+  public ErrorCode getErrorCode() {
+    return errorCode;
   }
 }
 

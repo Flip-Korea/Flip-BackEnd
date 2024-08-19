@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.temp_post.exception;
 
-import com.flip.flipapp.global.exception.BusinessException;
+import com.flip.flipapp.global.error.exception.BusinessException;
 
 public class TempPostNotFoundException extends BusinessException {
 

@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.post_tag.exception;
 
-import com.flip.flipapp.global.exception.BusinessException;
+import com.flip.flipapp.global.error.exception.BusinessException;
 
 public class PostTagOverMaxCountException extends BusinessException {
 

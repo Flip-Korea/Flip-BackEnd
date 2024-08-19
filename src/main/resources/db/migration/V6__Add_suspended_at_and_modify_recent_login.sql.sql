@@ -1,0 +1,3 @@
+ALTER TABLE account
+    ADD COLUMN suspended_at DATETIME NULL DEFAULT NULL,
+    MODIFY recent_login BIGINT NULL;
