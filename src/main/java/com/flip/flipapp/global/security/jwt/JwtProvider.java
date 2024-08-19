@@ -24,23 +24,26 @@ public class JwtProvider {
   @Value("${jwt.secret}")
   private String SECRET_KEY;
 
-  public long getAccessTokenExpiryTime() {
-    return 1000 * 60 * 60 * 12;
-  }
+  private static final String ISSUER = "flip";
+  private static final long ACCESS_TOKEN_EXPIRY_TIME = 1000L * 60 * 60 * 12;
+  private static final long REFRESH_TOKEN_EXPIRY_TIME = 1000L * 60 * 60 * 24 * 14;
 
-  public long getRefreshTokenExpiryTime() {
-    return 1000L * 60 * 60 * 24 * 14;
-  }
-
-  public String createToken(Long profileId, long expirationTime) {
-
+  public String createAccessToken(Long profileId) {
     return Jwts.builder()
-        .setIssuer("flip")
-        .setSubject(
-            profileId.toString())
-        .setIssuedAt(
-            new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+        .setIssuer(ISSUER)
+        .setSubject(profileId.toString())
+        .setIssuedAt(new Date(System.currentTimeMillis()))
+        .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRY_TIME))
+        .signWith(getSigningKey(SECRET_KEY))
+        .compact();
+  }
+
+  public String createRefreshToken(Long profileId) {
+    return Jwts.builder()
+        .setIssuer(ISSUER)
+        .setSubject(profileId.toString())
+        .setIssuedAt(new Date(System.currentTimeMillis()))
+        .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRY_TIME))
         .signWith(getSigningKey(SECRET_KEY))
         .compact();
   }

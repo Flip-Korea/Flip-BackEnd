@@ -25,10 +25,8 @@ public class RegisterController {
 
     Profile profile = registerService.register(registerRequest);
 
-    String accessToken = jwtProvider.createToken(profile.getProfileId(),
-        jwtProvider.getAccessTokenExpiryTime());
-    String refreshToken = jwtProvider.createToken(profile.getProfileId(),
-        jwtProvider.getRefreshTokenExpiryTime());
+    String accessToken = jwtProvider.createAccessToken(profile.getProfileId());
+    String refreshToken = jwtProvider.createRefreshToken(profile.getProfileId());
 
     JwtResponse response = new JwtResponse(accessToken, refreshToken);
 

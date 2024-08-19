@@ -33,7 +33,7 @@ public class RegisterService {
         .oauthId(registerRequest.oauthId())
         .recentLogin(null)
         .build();
-    account = accountRepository.save(account);
+    accountRepository.save(account);
 
     Profile profile = Profile.builder()
         .userId(registerRequest.profile().userId())

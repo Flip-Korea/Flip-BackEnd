@@ -1,10 +1,7 @@
 package com.flip.flipapp.global.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flip.flipapp.global.error.ErrorResponse;
 import com.flip.flipapp.global.error.exception.BusinessException;
-import com.flip.flipapp.global.error.exception.CustomExpiredJwtException;
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +24,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtFilter extends OncePerRequestFilter {
 
   private final JwtProvider jwtProvider;
-  private final ObjectMapper objectMapper;
   private static final String AUTHORIZATION_HEADER = "Authorization";
   private static final String AUTHORIZATION_TYPE = "Bearer ";
 
@@ -43,7 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
         Authentication authentication = getAuthentication(userDetails);
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
-    }catch (BusinessException e) {
+    } catch (BusinessException e) {
       log.info("Exception: {}, Message: {}", e.getClass(), e.getMessage());
     }
     filterChain.doFilter(request, response);
@@ -70,15 +66,5 @@ public class JwtFilter extends OncePerRequestFilter {
         .build();
   }
 
-  private void handleException(HttpServletResponse response, BusinessException e)
-      throws IOException {
-    response.setStatus(e.getErrorCode().getStatus());
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-
-    response.getWriter().write(objectMapper.writeValueAsString(
-        ErrorResponse.of(e.getErrorCode())
-    ));
-  }
 }
 
