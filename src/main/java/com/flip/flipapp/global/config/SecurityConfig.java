@@ -1,5 +1,6 @@
 package com.flip.flipapp.global.config;
 
+import com.flip.flipapp.global.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -19,6 +21,7 @@ public class SecurityConfig {
 
   private final AccessDeniedHandler customAccessDeniedHandler;
   private final AuthenticationEntryPoint customAuthenticationEntryPoint;
+  private final JwtFilter jwtFilter;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,8 +38,11 @@ public class SecurityConfig {
             .requestMatchers("/error/**", "/actuator/**", "/docs/**").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/v1/validations/nickname").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/v1/validations/user-id").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/v1/account/login").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/v1/accounts").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
-            .anyRequest().authenticated());
+            .anyRequest().authenticated())
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
   }

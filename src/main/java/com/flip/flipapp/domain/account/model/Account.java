@@ -8,13 +8,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "account")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Account {
 
   @Id
@@ -26,9 +32,17 @@ public class Account {
   private String oauthId;
 
   @Enumerated(EnumType.STRING)
+  @Builder.Default
   @Column(name = "account_state", nullable = false, columnDefinition = "varchar(25)")
   private AccountState accountState = AccountState.ACTIVE;
 
-  @Column(name = "recent_login", nullable = false, columnDefinition = "bigint")
+  @Column(name = "recent_login", columnDefinition = "bigint")
   private Long recentLogin;
+
+  @Column(name = "suspended_at", columnDefinition = "datetime")
+  private LocalDateTime suspendedAt;
+
+  public void setRecentLogin(Long accountId) {
+    this.recentLogin = accountId;
+  }
 }

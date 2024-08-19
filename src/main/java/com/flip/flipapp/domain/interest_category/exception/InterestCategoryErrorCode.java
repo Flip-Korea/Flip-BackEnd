@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.interest_category.exception;
 
-import com.flip.flipapp.global.exception.ErrorCode;
+import com.flip.flipapp.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -51,6 +51,11 @@ include::profile.adoc[]
 
 include::scrap.adoc[]
 
+[[account-api]]
+== ACCOUNT API
+
+include::account.adoc[]
+
 [[follow-api]]
 == FOLLOW API
 

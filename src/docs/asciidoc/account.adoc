@@ -1,0 +1,4 @@
+[[register]]
+=== 회원가입
+
+operation::register[snippets='http-request,request-body,request-fields,http-response']

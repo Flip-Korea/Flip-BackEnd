@@ -1,6 +1,6 @@
 package com.flip.flipapp.domain.temp_post.exception;
 
-import com.flip.flipapp.global.exception.ErrorCode;
+import com.flip.flipapp.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

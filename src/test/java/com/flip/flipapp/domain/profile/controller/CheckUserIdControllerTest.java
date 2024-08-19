@@ -16,7 +16,7 @@ import com.flip.flipapp.common.SpringBootTestWithRestDocs;
 import com.flip.flipapp.docs.RestDocsAttributeFactory;
 import com.flip.flipapp.domain.profile.controller.dto.request.CheckUserIdRequest;
 import com.flip.flipapp.domain.profile.exception.ProfileErrorCode;
-import com.flip.flipapp.global.exception.CommonErrorCode;
+import com.flip.flipapp.global.error.CommonErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

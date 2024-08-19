@@ -19,6 +19,9 @@ management:
       exposure:
         include: "health, info"
 
+jwt:
+  secret: ${JWT_KEY}
+
 decorator:
   datasource:
     p6spy:
