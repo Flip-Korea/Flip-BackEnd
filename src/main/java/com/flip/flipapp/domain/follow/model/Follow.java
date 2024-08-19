@@ -44,4 +44,8 @@ public class Follow {
   @CreationTimestamp
   private LocalDateTime fallowAt;
 
+  public boolean isFollower(Long profileId){
+    return follower.getProfileId().equals(profileId);
+  }
+
 }
