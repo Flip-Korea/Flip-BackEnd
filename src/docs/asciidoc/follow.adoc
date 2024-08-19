@@ -2,3 +2,8 @@
 === 팔로우
 
 operation::follow[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
+
+[[unfollow]]
+=== 언팔로우
+
+operation::unfollow[snippets='http-request,request-headers,path-parameters,http-response']
