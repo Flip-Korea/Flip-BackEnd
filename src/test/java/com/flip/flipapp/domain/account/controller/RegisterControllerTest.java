@@ -30,7 +30,6 @@ class RegisterControllerTest {
   MockMvc mockMvc;
 
   @Autowired
-
   ObjectMapper objectMapper;
 
   RegisterRequest validRequest = new RegisterRequest("oauth123",
