@@ -62,12 +62,12 @@ class GetMyScrapsControllerTest {
                    responseFields(
                        fieldWithPath("scraps[].scrapId").type(JsonFieldType.NUMBER)
                                                         .description("스크랩 ID"),
+                       fieldWithPath("scraps[].scrapComment").type(JsonFieldType.STRING)
+                                                             .description("스크랩 코멘트"),
                        fieldWithPath("scraps[].scrapAt").type(JsonFieldType.STRING)
                                                         .description("스크랩 작성 시간"),
                        fieldWithPath("scraps[].postTitle").type(JsonFieldType.STRING)
                                                           .description("포스트 제목"),
-                       fieldWithPath("scraps[].postContent").type(JsonFieldType.STRING)
-                                                            .description("포스트 내용"),
                        fieldWithPath("scraps[].postWriterNickname").type(JsonFieldType.STRING)
                                                                    .description("포스트 작성자 닉네임"),
                        fieldWithPath("totalCount").type(JsonFieldType.NUMBER)
@@ -108,12 +108,12 @@ class GetMyScrapsControllerTest {
                    responseFields(
                        fieldWithPath("scraps[].scrapId").type(JsonFieldType.NUMBER)
                                                         .description("스크랩 ID"),
+                       fieldWithPath("scraps[].scrapComment").type(JsonFieldType.STRING)
+                                                            .description("스크랩 코멘트"),
                        fieldWithPath("scraps[].scrapAt").type(JsonFieldType.STRING)
                                                         .description("스크랩 작성 시간"),
                        fieldWithPath("scraps[].postTitle").type(JsonFieldType.STRING)
                                                           .description("포스트 제목"),
-                       fieldWithPath("scraps[].postContent").type(JsonFieldType.STRING)
-                                                            .description("포스트 내용"),
                        fieldWithPath("scraps[].postWriterNickname").type(JsonFieldType.STRING)
                                                                    .description("포스트 작성자 닉네임"),
                        fieldWithPath("totalCount").type(JsonFieldType.NUMBER)
