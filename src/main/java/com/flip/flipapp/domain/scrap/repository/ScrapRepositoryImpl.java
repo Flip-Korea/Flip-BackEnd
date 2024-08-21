@@ -32,9 +32,9 @@ public class ScrapRepositoryImpl implements ScrapRepositoryCustom {
         .select(
             new QScrapPageDto(
                 scrap.scrapId,
+                scrap.scrapComment,
                 scrap.scrapAt,
                 post.title,
-                post.content,
                 post.profile.nickname
             )
         )

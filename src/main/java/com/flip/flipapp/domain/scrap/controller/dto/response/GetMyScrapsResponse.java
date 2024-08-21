@@ -12,9 +12,9 @@ public record GetMyScrapsResponse(
 
   public record MyScrap(
       Long scrapId,
+      String scrapComment,
       LocalDateTime scrapAt,
       String postTitle,
-      String postContent,
       String postWriterNickname
   ) {
 
@@ -25,9 +25,9 @@ public record GetMyScrapsResponse(
                                .map(content ->
                                    new MyScrap(
                                        content.getScrapId(),
+                                       content.getScrapComment(),
                                        content.getScrapAt(),
                                        content.getPostTitle(),
-                                       content.getPostContent(),
                                        content.getPostWriterNickname())
                                )
                                .toList();
