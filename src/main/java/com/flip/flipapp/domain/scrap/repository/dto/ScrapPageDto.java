@@ -10,18 +10,18 @@ import lombok.ToString;
 public class ScrapPageDto {
 
   private Long scrapId;
+  private String scrapComment;
   private LocalDateTime scrapAt;
   private String postTitle;
-  private String postContent;
   private String postWriterNickname;
 
   @QueryProjection
-  public ScrapPageDto(Long scrapId, LocalDateTime scrapAt, String postTitle, String postContent
-      , String postWriterNickname) {
+  public ScrapPageDto(Long scrapId, String scrapComment, LocalDateTime scrapAt, String postTitle,
+      String postWriterNickname) {
     this.scrapId = scrapId;
+    this.scrapComment = scrapComment;
     this.scrapAt = scrapAt;
     this.postTitle = postTitle;
-    this.postContent = postContent;
     this.postWriterNickname = postWriterNickname;
   }
 }
