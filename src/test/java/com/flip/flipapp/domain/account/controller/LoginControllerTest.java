@@ -44,7 +44,6 @@ class LoginControllerTest {
   @DisplayName("유효한 요청 시 토큰을 발급받는다")
   @Sql("LoginControllerTest.sql")
   void should_return_200_and_issue_tokens_when_login_is_valid() throws Exception {
-    // 실제 데이터베이스에서 Profile 데이터를 조회하고, 그 데이터를 기반으로 JWT 토큰을 생성하여 반환
     mockMvc.perform(post("/api/v1/account/login")
             .content(objectMapper.writeValueAsBytes(validLoginRequest))
             .contentType(APPLICATION_JSON))
@@ -76,15 +75,7 @@ class LoginControllerTest {
         .andDo(
             document("login/suspended",
                 preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint()),
-                requestFields(
-                    fieldWithPath("provider").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
-                        .type(JsonFieldType.STRING)
-                        .description("OAuth 공급자 (예: kakao, google)"),
-                    fieldWithPath("oauthId").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
-                        .type(JsonFieldType.STRING)
-                        .description("OAuth ID")
-                )
+                preprocessResponse(prettyPrint())
             )
         );
   }
@@ -99,15 +90,7 @@ class LoginControllerTest {
         .andDo(
             document("login/not-found",
                 preprocessRequest(prettyPrint()),
-                preprocessResponse(prettyPrint()),
-                requestFields(
-                    fieldWithPath("provider").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
-                        .type(JsonFieldType.STRING)
-                        .description("OAuth 공급자 (예: kakao, google)"),
-                    fieldWithPath("oauthId").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
-                        .type(JsonFieldType.STRING)
-                        .description("OAuth ID")
-                )
+                preprocessResponse(prettyPrint())
             )
         );
   }
