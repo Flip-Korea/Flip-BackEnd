@@ -1,10 +1,13 @@
 package com.flip.flipapp.global.error;
 
+import com.flip.flipapp.domain.account.controller.dto.response.AccountSuspendedResponse;
+import com.flip.flipapp.domain.account.exception.AccountSuspendedException;
 import com.flip.flipapp.global.error.exception.BusinessException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -68,7 +71,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       HttpServletRequest request) {
     log.error(DEFAULT_LOG_MESSAGE, e.getClass(), e.getMessage());
     return ResponseEntity.status(e.getErrorCode().getStatus())
-
         .body(ErrorResponse.of(e.getErrorCode()));
+  }
+
+  /**
+   * 계정이 정지된 경우 발생하는 AccountSuspendedException을 처리합니다. 계정 정지에 대한 세부 정보를 포함한 403 Forbidden 응답을
+   * 반환합니다.
+   *
+   * @param e 서비스 레이어에서 발생한 AccountSuspendedException
+   * @return 계정 정지에 대한 세부 정보를 담은 AccountSuspendedResponse를 포함하는 ResponseEntity
+   */
+  @ExceptionHandler(AccountSuspendedException.class)
+  public ResponseEntity<AccountSuspendedResponse> handleAccountSuspendedException(
+      AccountSuspendedException e) {
+    AccountSuspendedResponse response = new AccountSuspendedResponse(
+        e.getSuspendedAt(), e.getAccountState(), e.getBlameTypes()
+    );
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
   }
 }
