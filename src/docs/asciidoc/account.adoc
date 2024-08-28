@@ -1,4 +1,16 @@
 [[register]]
 === 회원가입
 
-operation::register[snippets='http-request,request-body,request-fields,http-response']
+operation::register[snippets='http-request,request-body,request-fields,http-response,response-body']
+
+[[login]]
+=== 로그인
+
+==== 기존 회원의 로그인 시도
+operation::login/valid[snippets='http-request,request-body,request-fields,http-response,response-body']
+
+==== 정지된 계정의 로그인 시도
+operation::login/suspended[snippets='http-request,http-response']
+
+==== 계정이 없는 경우의 로그인 시도
+operation::login/not-found[snippets='http-request,http-response']

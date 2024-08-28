@@ -68,7 +68,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       HttpServletRequest request) {
     log.error(DEFAULT_LOG_MESSAGE, e.getClass(), e.getMessage());
     return ResponseEntity.status(e.getErrorCode().getStatus())
-
         .body(ErrorResponse.of(e.getErrorCode()));
   }
 }
