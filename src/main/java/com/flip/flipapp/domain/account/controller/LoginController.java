@@ -1,10 +1,11 @@
 package com.flip.flipapp.domain.account.controller;
 
-import com.flip.flipapp.domain.account.controller.dto.request.LoginRequest;
+import com.flip.flipapp.domain.account.controller.dto.request.OauthIdRequest;
 import com.flip.flipapp.domain.account.controller.dto.response.JwtResponse;
 import com.flip.flipapp.domain.account.service.LoginService;
 import com.flip.flipapp.domain.profile.model.Profile;
 import com.flip.flipapp.global.security.jwt.JwtProvider;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +19,15 @@ public class LoginController {
   private final LoginService loginService;
   private final JwtProvider jwtProvider;
 
-  @PostMapping("/api/v1/account/login")
-  public ResponseEntity<Object> login(@RequestBody LoginRequest request) {
+  @PostMapping("/api/v1/login")
+  public ResponseEntity<Object> login(@RequestBody @Valid OauthIdRequest oauthIdRequest) {
 
-    Profile profile = loginService.login(request.provider(), request.oauthId());
+    Profile profile = loginService.login(oauthIdRequest);
 
     String accessToken = jwtProvider.createAccessToken(profile.getProfileId());
     String refreshToken = jwtProvider.createRefreshToken(profile.getProfileId());
-
     JwtResponse jwtResponse = new JwtResponse(accessToken, refreshToken);
-    return ResponseEntity.ok().body(jwtResponse);
+
+    return ResponseEntity.ok(jwtResponse);
   }
 }

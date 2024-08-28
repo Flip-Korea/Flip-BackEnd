@@ -45,4 +45,8 @@ public class Account {
   public void setRecentLogin(Long accountId) {
     this.recentLogin = accountId;
   }
+
+  public boolean isAccountActive() {
+    return this.accountState == AccountState.ACTIVE;
+  }
 }

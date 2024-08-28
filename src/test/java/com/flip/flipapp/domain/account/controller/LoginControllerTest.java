@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flip.flipapp.common.SpringBootTestWithRestDocs;
-import com.flip.flipapp.domain.account.controller.dto.request.LoginRequest;
+import com.flip.flipapp.domain.account.controller.dto.request.OauthIdRequest;
 import com.flip.flipapp.global.security.jwt.JwtProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,17 +34,17 @@ class LoginControllerTest {
   @Autowired
   JwtProvider jwtProvider;
 
-  LoginRequest validLoginRequest = new LoginRequest("kakao", "oauth1");
+  OauthIdRequest validLoginRequest = new OauthIdRequest("kakao", "oauth1");
 
-  LoginRequest suspendedLoginRequest = new LoginRequest("kakao", "oauth2");
+  OauthIdRequest suspendedLoginRequest = new OauthIdRequest("kakao", "oauth2");
 
-  LoginRequest nonExistentLoginRequest = new LoginRequest("kakao", "oauth3");
+  OauthIdRequest nonExistentLoginRequest = new OauthIdRequest("kakao", "oauth3");
 
   @Test
   @DisplayName("유효한 요청 시 토큰을 발급받는다")
   @Sql("LoginControllerTest.sql")
   void should_return_200_and_issue_tokens_when_login_is_valid() throws Exception {
-    mockMvc.perform(post("/api/v1/account/login")
+    mockMvc.perform(post("/api/v1/login")
             .content(objectMapper.writeValueAsBytes(validLoginRequest))
             .contentType(APPLICATION_JSON))
         .andExpect(status().isOk())
@@ -53,10 +53,12 @@ class LoginControllerTest {
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint()),
                 requestFields(
-                    fieldWithPath("provider").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
+                    fieldWithPath("provider")
+                        .attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
                         .type(JsonFieldType.STRING)
                         .description("OAuth 공급자 (예: kakao, google)"),
-                    fieldWithPath("oauthId").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
+                    fieldWithPath("oauthId")
+                        .attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
                         .type(JsonFieldType.STRING)
                         .description("OAuth ID")
                 )
@@ -68,7 +70,7 @@ class LoginControllerTest {
   @DisplayName("정지된 계정으로 로그인 시 403 응답을 반환한다")
   @Sql("LoginControllerTest.sql")
   void should_return_403_when_account_is_suspended() throws Exception {
-    mockMvc.perform(post("/api/v1/account/login")
+    mockMvc.perform(post("/api/v1/login")
             .content(objectMapper.writeValueAsBytes(suspendedLoginRequest))
             .contentType(APPLICATION_JSON))
         .andExpect(status().isForbidden())
@@ -83,7 +85,7 @@ class LoginControllerTest {
   @Test
   @DisplayName("존재하지 않는 계정으로 로그인 시 404 응답을 반환한다")
   void should_return_404_when_account_does_not_exist() throws Exception {
-    mockMvc.perform(post("/api/v1/account/login")
+    mockMvc.perform(post("/api/v1/login")
             .content(objectMapper.writeValueAsBytes(nonExistentLoginRequest))
             .contentType(APPLICATION_JSON))
         .andExpect(status().isNotFound())
