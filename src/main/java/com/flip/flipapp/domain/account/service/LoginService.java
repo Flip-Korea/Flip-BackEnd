@@ -28,10 +28,10 @@ public class LoginService {
       throw new AccountSuspendedException();
     }
 
-    Profile RecentProfile = profileRepository.findById(account.getRecentLogin())
+    Profile recentProfile = profileRepository.findById(account.getRecentLogin())
         .orElseThrow(ProfileNotFoundException::new);
 
-    return RecentProfile;
+    return recentProfile;
   }
 
 }
