@@ -1,4 +1,4 @@
-package com.flip.flipapp.domain.profile.controller.dto;
+package com.flip.flipapp.domain.profile.controller;
 
 import com.flip.flipapp.domain.profile.controller.dto.request.CheckUserIdRequest;
 import com.flip.flipapp.domain.profile.service.CheckUserIdService;
