@@ -20,7 +20,7 @@ public class LoginController {
   private final JwtProvider jwtProvider;
 
   @PostMapping("/api/v1/login")
-  public ResponseEntity<Object> login(@RequestBody @Valid OauthIdRequest oauthIdRequest) {
+  public ResponseEntity<JwtResponse> login(@RequestBody @Valid OauthIdRequest oauthIdRequest) {
 
     Profile profile = loginService.login(oauthIdRequest);
 
