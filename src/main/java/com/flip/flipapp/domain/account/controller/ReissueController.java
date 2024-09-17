@@ -2,11 +2,12 @@ package com.flip.flipapp.domain.account.controller;
 
 import com.flip.flipapp.domain.account.controller.dto.response.JwtResponse;
 import com.flip.flipapp.domain.account.service.ReissueService;
+import com.flip.flipapp.global.auth.CurrentProfile;
+import com.flip.flipapp.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,13 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReissueController {
 
   private final ReissueService reissueService;
+  private final JwtProvider jwtProvider;
 
   @PostMapping("/api/v1/reissue")
   public ResponseEntity<JwtResponse> reissue(
-      @AuthenticationPrincipal UserDetails userDetails) {
-    Long profileId = Long.valueOf(userDetails.getUsername());
+      @RequestHeader("Authorization") String token,
+      @CurrentProfile Long profileId) {
 
-    JwtResponse jwtResponse = reissueService.reissue(profileId);
+    jwtProvider.validateRefreshToken(token);
+
+    Long validProfileId = reissueService.reissue(profileId);
+
+    String accessToken = jwtProvider.createAccessToken(validProfileId);
+    String refreshToken = jwtProvider.createRefreshToken(validProfileId);
+
+    JwtResponse jwtResponse = new JwtResponse(accessToken, refreshToken);
 
     return ResponseEntity.ok(jwtResponse);
   }
