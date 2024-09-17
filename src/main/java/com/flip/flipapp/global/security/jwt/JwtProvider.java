@@ -1,5 +1,8 @@
 package com.flip.flipapp.global.security.jwt;
 
+import static com.flip.flipapp.global.security.jwt.JwtType.ACCESS_TOKEN;
+import static com.flip.flipapp.global.security.jwt.JwtType.REFRESH_TOKEN;
+
 import com.flip.flipapp.global.error.exception.CustomExpiredJwtException;
 import com.flip.flipapp.global.error.exception.CustomIllegalArgumentException;
 import com.flip.flipapp.global.error.exception.CustomMalformedJwtException;
@@ -25,25 +28,25 @@ public class JwtProvider {
   private String SECRET_KEY;
 
   private static final String ISSUER = "flip";
-  private static final long ACCESS_TOKEN_EXPIRY_TIME = 1000L * 60 * 60 * 12;
-  private static final long REFRESH_TOKEN_EXPIRY_TIME = 1000L * 60 * 60 * 24 * 14;
 
   public String createAccessToken(Long profileId) {
     return Jwts.builder()
+        .setHeaderParam("typ", ACCESS_TOKEN.getType())
         .setIssuer(ISSUER)
         .setSubject(profileId.toString())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRY_TIME))
+        .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN.getExpiration()))
         .signWith(getSigningKey(SECRET_KEY))
         .compact();
   }
 
   public String createRefreshToken(Long profileId) {
     return Jwts.builder()
+        .setHeaderParam("typ", REFRESH_TOKEN.getType())
         .setIssuer(ISSUER)
         .setSubject(profileId.toString())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRY_TIME))
+        .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN.getExpiration()))
         .signWith(getSigningKey(SECRET_KEY))
         .compact();
   }
@@ -66,6 +69,15 @@ public class JwtProvider {
     }
   }
 
+  public void validateRefreshToken(String bearerToken) {
+    String pureToken = bearerToken.substring("Bearer ".length());
+
+    String tokenType = getTokenType(pureToken);
+    if (!JwtType.REFRESH_TOKEN.getType().equals(tokenType)) {
+      throw new CustomMalformedJwtException();
+    }
+  }
+
   public String getSubjectFromToken(String token) {
     Claims claims = Jwts.parserBuilder().setSigningKey(getSigningKey(SECRET_KEY)).build()
         .parseClaimsJws(token).getBody();
@@ -74,6 +86,15 @@ public class JwtProvider {
 
   public Key getSigningKey(String secretKey) {
     return Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
+  }
+
+  private String getTokenType(String token) {
+    return Jwts.parserBuilder()
+        .setSigningKey(getSigningKey(SECRET_KEY))
+        .build()
+        .parseClaimsJws(token)
+        .getHeader()
+        .getType();
   }
 
 }
