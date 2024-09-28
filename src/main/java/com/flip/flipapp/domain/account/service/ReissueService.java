@@ -13,7 +13,7 @@ public class ReissueService {
 
   private final AccountRepository accountRepository;
 
-  public Long reissue(Long profileId) {
+  public void reissue(Long profileId) {
     Account account = accountRepository.findById(profileId)
         .orElseThrow(AccountNotFoundException::new);
 
@@ -21,7 +21,5 @@ public class ReissueService {
       throw new AccountSuspendedException();
     }
 
-    return profileId;
   }
-
 }
