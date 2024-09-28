@@ -1,6 +1,5 @@
 package com.flip.flipapp.global.security.jwt;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flip.flipapp.global.error.exception.BusinessException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
