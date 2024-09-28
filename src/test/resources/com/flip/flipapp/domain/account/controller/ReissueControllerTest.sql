@@ -10,6 +10,12 @@ VALUES (1, 'user1', 'nickname1', '자기소개1', 1);
 INSERT INTO profile (profile_id, user_id, nickname, introduce, account_id)
 VALUES (2, 'user2', 'nickname2', '자기소개2', 2);
 
+INSERT INTO token (token_id, refresh_token, profile_id)
+VALUES (1, 'refresh_token1', 1);
+
+INSERT INTO token (token_id, refresh_token, profile_id)
+VALUES (2, 'refresh_token2', 2);
+
 INSERT INTO blame (blame_id, type, blame_at, reporter_id, reported_id)
 VALUES (1, 'DISLIKE', '2024-07-01 00:00:00', 1, 2);
 

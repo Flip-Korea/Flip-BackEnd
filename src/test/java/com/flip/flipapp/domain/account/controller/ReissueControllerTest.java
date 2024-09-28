@@ -45,7 +45,7 @@ class ReissueControllerTest {
   @DisplayName("유효한 요청 시 JWT 토큰을 재발급한다")
   void should_reissue_jwt_tokens_when_request_is_valid() throws Exception {
 
-    String validRefreshToken = jwtProvider.createRefreshToken(1L);
+    String validRefreshToken = "refresh_token1";
 
     mockMvc.perform(
             post("/api/v1/reissue")
@@ -94,7 +94,7 @@ class ReissueControllerTest {
 
   @Test
   @WithMockUser(username = "1")
-  @DisplayName("리프레쉬 토큰이 아닌 액세스 토큰으로 재발급 요청 시 400 응답을 반환한다")
+  @DisplayName("리프레쉬 토큰이 아닌 액세스 토큰으로 재발급 요청 시 401 응답을 반환한다")
   void should_return_400_when_access_token_is_used_instead_of_refresh_token() throws Exception {
 
     String validAccessToken = jwtProvider.createAccessToken(1L);
