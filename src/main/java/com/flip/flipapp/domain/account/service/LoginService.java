@@ -19,9 +19,9 @@ public class LoginService {
   private final ProfileRepository profileRepository;
 
   public Profile login(OauthIdRequest oauthIdRequest) {
+    String fullOauthId = oauthIdRequest.provider() + oauthIdRequest.oauthId();
 
-    Account account = accountRepository.findByOauthId(
-            oauthIdRequest.provider() + oauthIdRequest.oauthId())
+    Account account = accountRepository.findByOauthId(fullOauthId)
         .orElseThrow(AccountNotFoundException::new);
 
     if (!account.isAccountActive()) {
