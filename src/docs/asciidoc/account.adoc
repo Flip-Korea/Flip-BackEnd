@@ -14,3 +14,6 @@ operation::login/suspended[snippets='http-request,http-response']
 
 ==== 계정이 없는 경우의 로그인 시도
 operation::login/not-found[snippets='http-request,http-response']
+
+=== 정지 정보 조회
+operation::getSuspensionDetails[snippets='http-request,request-body,request-fields,http-response,response-body']
