@@ -7,7 +7,6 @@ import com.flip.flipapp.domain.account.model.Account;
 import com.flip.flipapp.domain.account.repository.AccountRepository;
 import com.flip.flipapp.domain.blame.repository.BlameRepository;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +18,17 @@ public class GetSuspensionDetailsService {
   private final BlameRepository blameRepository;
 
   public GetSuspensionDetailsResponse getSuspensionDetails(OauthIdRequest oauthIdRequest) {
-    Account account = accountRepository.findByOauthId(
-            oauthIdRequest.provider() + oauthIdRequest.oauthId())
+    String fullOauthId = oauthIdRequest.provider() + oauthIdRequest.oauthId();
+
+    Account account = accountRepository.findByOauthId(fullOauthId)
         .orElseThrow(AccountNotFoundException::new);
 
-    List<String> blameTypes = blameRepository.findByReportedId(account)
-        .stream()
-        .map(blame -> blame.getType().getDescription())
-        .distinct()
-        .collect(Collectors.toList());
+    List<String> distinctBlameTypes = blameRepository.findDistinctBlameTypesByReportedId(account);
 
     return new GetSuspensionDetailsResponse(
         account.getSuspendedAt(),
         account.getAccountState().getDescription(),
-        blameTypes
+        distinctBlameTypes
     );
   }
 }
