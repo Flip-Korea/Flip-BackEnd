@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AccountStatusCheckService {
+public class CheckAccountStatusService {
 
   private final AccountRepository accountRepository;
 
