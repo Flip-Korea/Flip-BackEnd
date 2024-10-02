@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ReissueService {
+public class AccountStatusCheckService {
 
   private final AccountRepository accountRepository;
 
-  public void reissue(Long profileId) {
+  public void checkAccountStatus(Long profileId) {
     Account account = accountRepository.findById(profileId)
         .orElseThrow(AccountNotFoundException::new);
 

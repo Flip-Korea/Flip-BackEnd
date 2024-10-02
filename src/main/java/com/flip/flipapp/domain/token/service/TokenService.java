@@ -25,7 +25,6 @@ public class TokenService {
     return new JwtResponse(newAccessToken, newRefreshToken);
   }
 
-  @Transactional
   public void saveRefreshToken(Profile profile, String newRefreshToken) {
     Token token = Token.builder()
         .profile(profile)
@@ -35,17 +34,13 @@ public class TokenService {
     tokenRepository.save(token);
   }
 
-  @Transactional
-  public Token validateToken(String currentRefreshToken) {
-    String pureRefreshToken = currentRefreshToken.replace("Bearer ", "");
-
-    return tokenRepository.findByRefreshToken(pureRefreshToken)
-        .orElseThrow(CustomMalformedJwtException::new);
+  public String parseBearerToken(String bearerToken) {
+    return bearerToken.replace("Bearer ", "");
   }
 
-  @Transactional
-  public void updateRefreshToken(Token token, String newRefreshToken) {
-    token.updateRefreshToken(newRefreshToken);
+  public Token validateToken(String pureRefreshToken) {
+    return tokenRepository.findByRefreshToken(pureRefreshToken)
+        .orElseThrow(CustomMalformedJwtException::new);
   }
 
   public JwtResponse createAndSaveTokens(Profile profile) {
@@ -56,11 +51,12 @@ public class TokenService {
   }
 
   @Transactional
-  public JwtResponse validateAndCreateTokens(String currentRefreshToken, Long profileId) {
-    Token token = validateToken(currentRefreshToken);
+  public JwtResponse reissue(String currentRefreshToken, Long profileId) {
+    String pureRefreshToken = parseBearerToken(currentRefreshToken);
+    Token token = validateToken(pureRefreshToken);
     JwtResponse jwtResponse = createTokens(profileId);
-    updateRefreshToken(token, jwtResponse.refreshToken());
 
+    token.updateRefreshToken(jwtResponse.refreshToken());
     return jwtResponse;
   }
 }
