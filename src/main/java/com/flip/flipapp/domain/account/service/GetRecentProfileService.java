@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class GetRecentProfileService {
 
   private final AccountRepository accountRepository;
   private final ProfileRepository profileRepository;
 
-  public Profile login(OauthIdRequest oauthIdRequest) {
+  public Profile getRecentProfile(OauthIdRequest oauthIdRequest) {
+    String fullOauthId = oauthIdRequest.provider() + oauthIdRequest.oauthId();
 
-    Account account = accountRepository.findByOauthId(
-            oauthIdRequest.provider() + oauthIdRequest.oauthId())
+    Account account = accountRepository.findByOauthId(fullOauthId)
         .orElseThrow(AccountNotFoundException::new);
 
     if (!account.isAccountActive()) {
