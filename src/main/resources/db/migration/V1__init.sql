@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS account
 
 CREATE TABLE IF NOT EXISTS block
 (
-    Block_id   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    block_id   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     blocked_id BIGINT UNSIGNED NOT NULL,
     blocker_id BIGINT UNSIGNED NOT NULL,
 
-    PRIMARY KEY (Block_id),
+    PRIMARY KEY (block_id),
     FOREIGN KEY (blocked_id) REFERENCES account (account_id),
     FOREIGN KEY (blocker_id) REFERENCES account (account_id)
 );
