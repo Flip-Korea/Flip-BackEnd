@@ -1,0 +1,4 @@
+[[block]]
+=== 계정 차단
+
+operation::block[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
