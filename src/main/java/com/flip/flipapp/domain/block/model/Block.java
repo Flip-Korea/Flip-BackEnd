@@ -10,13 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "block")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Block {
 
   @Id
@@ -31,4 +36,8 @@ public class Block {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "blocker_id", nullable = false, columnDefinition = "bigint")
   private Account blocker;
+
+  public boolean isBlocker(Long accountId){
+    return blocker.getAccountId().equals(accountId);
+  }
 }
