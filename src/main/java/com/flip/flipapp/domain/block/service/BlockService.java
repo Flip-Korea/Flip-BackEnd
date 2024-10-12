@@ -7,6 +7,7 @@ import com.flip.flipapp.domain.block.model.Block;
 import com.flip.flipapp.domain.block.repository.BlockRepository;
 import com.flip.flipapp.domain.block.service.dto.BlockCommand;
 import com.flip.flipapp.domain.profile.exception.ProfileNotFoundException;
+import com.flip.flipapp.domain.profile.model.Profile;
 import com.flip.flipapp.domain.profile.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -50,8 +51,8 @@ public class BlockService {
   }
 
   private Account findAccountByProfileId(Long profileId) {
-    return profileRepository.findAccountByProfileId(profileId)
+    Profile profile = profileRepository.findById(profileId)
         .orElseThrow(ProfileNotFoundException::new);
+    return profile.getAccount();
   }
-
 }
