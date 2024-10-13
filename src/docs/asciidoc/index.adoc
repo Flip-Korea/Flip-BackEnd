@@ -60,3 +60,8 @@ include::account.adoc[]
 == FOLLOW API
 
 include::follow.adoc[]
+
+[[block-api]]
+== BLOCK API
+
+include::block.adoc[]

@@ -7,5 +7,4 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
   boolean existsByUserId(String userId);
 
-
 }
