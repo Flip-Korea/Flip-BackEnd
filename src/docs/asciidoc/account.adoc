@@ -23,3 +23,8 @@ operation::reissue[snippets='http-request,request-headers,http-response,response
 
 === 정지 정보 조회
 operation::getSuspensionDetails[snippets='http-request,request-body,request-fields,http-response,response-body']
+
+[[logout]]
+=== 로그아웃
+
+operation::logout[snippets='http-request,request-headers,http-response']
