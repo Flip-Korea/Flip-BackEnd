@@ -39,6 +39,18 @@ public class Profile {
   @Column(name = "introduce", nullable = false, columnDefinition = "text")
   private String introduce;
 
+  @Column(name = "following_cnt", nullable = false, columnDefinition = "bigint")
+  @Builder.Default
+  private Long followingCnt = 0L;
+
+  @Column(name = "follower_cnt", nullable = false, columnDefinition = "bigint")
+  @Builder.Default
+  private Long followerCnt = 0L;
+
+  @Column(name = "post_cnt", nullable = false, columnDefinition = "bigint")
+  @Builder.Default
+  private Long postCnt = 0L;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "account_id", nullable = false, columnDefinition = "bigint")
   private Account account;
