@@ -7,3 +7,9 @@ operation::checkNickname[snippets='http-request,request-body,request-fields,http
 === 아이디 유효성 검사
 
 operation::checkUserId[snippets='http-request,request-body,request-fields,http-response']
+
+
+[[get-profile]]
+=== 나의 프로필 조회
+
+operation::getMyProfile[snippets='http-request,http-response,response-body,response-fields']
