@@ -23,7 +23,7 @@ public class FollowService {
   @Transactional
   public Follow follow(FollowCommand command) {
     Profile follow = findFollow(command.followId());
-    Profile follower = Profile.getAuthenticatedProfile(command.followerId());
+    Profile follower = findFollow(command.followerId());
 
     if (isSelfFollow(follow, follower)) {
       throw new SelfFollowException();
@@ -40,7 +40,10 @@ public class FollowService {
 
     // 유니크 키 제약 조건에 의해 중복된 팔로우가 발생한 경우
     try {
-      return followRepository.save(newFollow);
+      Follow savedFollow = followRepository.saveAndFlush(newFollow);
+      follow.incrementFollowerCnt();
+      follower.incrementFollowingCnt();
+      return savedFollow;
     } catch (DataIntegrityViolationException e) {
       throw new DuplicatedFollowException();
     }
