@@ -2,3 +2,8 @@
 === 계정 차단
 
 operation::block[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
+
+[[unblock]]
+=== 계정 차단 해제
+
+operation::unblock[snippets='http-request,request-headers,path-parameters,http-response']
