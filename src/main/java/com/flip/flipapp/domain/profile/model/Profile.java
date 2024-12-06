@@ -59,4 +59,23 @@ public class Profile {
     return Profile.builder().profileId(profileId).build();
   }
 
+  public void incrementFollowingCnt() {
+    this.followingCnt = this.followingCnt + 1;
+  }
+
+  public void decrementFollowingCnt() {
+    if (this.followingCnt > 0) {
+      this.followingCnt = this.followingCnt - 1;
+    }
+  }
+
+  public void incrementFollowerCnt() {
+    this.followerCnt = this.followerCnt + 1;
+  }
+
+  public void decrementFollowerCnt() {
+    if (this.followerCnt > 0) {
+      this.followerCnt = this.followerCnt - 1;
+    }
+  }
 }
