@@ -59,5 +59,13 @@ public class TokenService {
     token.updateRefreshToken(jwtResponse.refreshToken());
     return jwtResponse;
   }
+
+  @Transactional
+  public void logout(String RefreshToken) {
+    String pureRefreshToken = parseBearerToken(RefreshToken);
+    Token token = validateToken(pureRefreshToken);
+
+    tokenRepository.delete(token);
+  }
 }
 
