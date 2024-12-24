@@ -1,2 +1,2 @@
 ALTER TABLE account
-    ADD COLUMN ads_agree BOOLEAN NOT NULL;
+    ADD COLUMN ads_agree BOOLEAN DEFAULT true NOT NULL;
