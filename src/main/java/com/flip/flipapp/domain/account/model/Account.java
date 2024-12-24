@@ -42,6 +42,9 @@ public class Account {
   @Column(name = "suspended_at", columnDefinition = "datetime")
   private LocalDateTime suspendedAt;
 
+  @Column(name = "ads_agree", nullable = false, columnDefinition = "boolean")
+  private Boolean adsAgree;
+
   public void setRecentLogin(Long accountId) {
     this.recentLogin = accountId;
   }
