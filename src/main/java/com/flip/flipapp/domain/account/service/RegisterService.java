@@ -28,7 +28,7 @@ public class RegisterService {
 
     Account account = Account.builder()
         .oauthId(fullOauthId)
-        .adsAgree(registerRequest.ads_agree())
+        .adsAgree(registerRequest.adsAgree())
         .recentLogin(null)
         .build();
     try {
