@@ -16,7 +16,7 @@ public record RegisterRequest(
   public record UserProfile(
       @NotBlank String userId,
       @NotBlank String nickname,
-      String photoUrl
+      String imageUrl
   ) {
 
   }

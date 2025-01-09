@@ -47,9 +47,9 @@ public class RegisterService {
 
     account.setRecentLogin(profile.getProfileId());
 
-    if (StringUtils.hasText(registerRequest.profile().photoUrl())) {
+    if (StringUtils.hasText(registerRequest.profile().imageUrl())) {
       ProfileImage profileImage = ProfileImage.builder()
-          .imageUrl(registerRequest.profile().photoUrl())
+          .imageUrl(registerRequest.profile().imageUrl())
           .profile(profile)
           .build();
       profileImageRepository.save(profileImage);
