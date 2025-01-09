@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 
 public record CheckNicknameRequest(
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9\\uAC00-\\uD7A3ㄱ-ㅎㅏ-ㅣ]{2,12}$", message = "2-12자리 한글 및 영문을 입력해주세요.")
+    @Pattern(regexp = "^[가-힣a-zA-Z0-9 ]{2,12}$", message = "2~12자의 한글, 영문, 숫자만 사용 가능합니다.")
     String nickname
 ) {
 }

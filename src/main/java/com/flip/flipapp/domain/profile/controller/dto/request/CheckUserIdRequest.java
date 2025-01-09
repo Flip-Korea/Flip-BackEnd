@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 
 public record CheckUserIdRequest(
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9._]{1,16}$", message = "1-16자리 영문, 숫자, 특수문자(. , _)를 입력해주세요.")
+    @Pattern(regexp = "^[a-zA-Z0-9._]{4,16}$", message = "4~16자의 영문, 숫자, 특수기호(_),(.)만 사용 가능합니다.")
     String userId
 ) {
 }
