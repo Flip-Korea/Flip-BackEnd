@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ProfileErrorCode implements ErrorCode {
 
-  PROFILE_DUPLICATE_USER_ID("P001", "중복된 사용자 아이디입니다.", 409),
+  PROFILE_DUPLICATE_USER_ID("P001", "다른 사용자가 사용 중인 아이디예요.", 409),
   PROFILE_NOT_FOUND("P002", "해당 프로필을 찾을 수 없습니다.", 400);
 
   private final String code;
