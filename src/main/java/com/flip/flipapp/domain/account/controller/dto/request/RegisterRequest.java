@@ -9,14 +9,14 @@ public record RegisterRequest(
     @NotBlank @Pattern(regexp = "google|kakao|naver|apple", message = "잘못된 소셜 로그인 공급자입니다.")
     String provider,
     @NotBlank String oauthId,
-    @NotNull boolean ads_agree,
+    @NotNull boolean adsAgree,
     @Valid UserProfile profile
 ) {
 
   public record UserProfile(
       @NotBlank String userId,
       @NotBlank String nickname,
-      String photoUrl
+      String imageUrl
   ) {
 
   }
