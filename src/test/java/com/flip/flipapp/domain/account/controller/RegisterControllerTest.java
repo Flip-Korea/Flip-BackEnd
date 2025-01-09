@@ -66,7 +66,7 @@ class RegisterControllerTest {
                     fieldWithPath("oauthId").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
                         .type(JsonFieldType.STRING)
                         .description("OAuth ID"),
-                    fieldWithPath("ads_agree").attributes(constraintsField("true 또는 false"))
+                    fieldWithPath("adsAgree").attributes(constraintsField("true 또는 false"))
                         .type(JsonFieldType.BOOLEAN)
                         .description("광고 수신 동의 여부"),
                     fieldWithPath("profile.userId").attributes(constraintsField("널, 공백 또는 빈 문자열 X"))
@@ -76,7 +76,7 @@ class RegisterControllerTest {
                             constraintsField("널, 공백 또는 빈 문자열 X"))
                         .type(JsonFieldType.STRING)
                         .description("사용자 닉네임"),
-                    fieldWithPath("profile.photoUrl").attributes(
+                    fieldWithPath("profile.imageUrl").attributes(
                             constraintsField("프로필 사진 미설정 시 null 으로 전달"))
                         .type(JsonFieldType.STRING)
                         .description("프로필 사진 URL")
