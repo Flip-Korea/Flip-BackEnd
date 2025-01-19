@@ -39,6 +39,7 @@ class GetMyProfileControllerTest {
             jsonPath("$.userId").value("user1"),
             jsonPath("$.nickname").value("nickname1"),
             jsonPath("$.introduce").value("자기소개1"),
+            jsonPath("$.imageUrl").value("https://example.com/image1"),
             jsonPath("$.followerCnt").value(0),
             jsonPath("$.followingCnt").value(0),
             jsonPath("$.postCnt").value(0)
@@ -54,6 +55,7 @@ class GetMyProfileControllerTest {
                     fieldWithPath("userId").description("사용자 ID"),
                     fieldWithPath("nickname").description("닉네임"),
                     fieldWithPath("introduce").description("사용자 소개"),
+                    fieldWithPath("imageUrl").description("프로필 이미지 URL, 없으면 null"),
                     fieldWithPath("followerCnt").description("팔로워 수"),
                     fieldWithPath("followingCnt").description("팔로잉 수"),
                     fieldWithPath("postCnt").description("게시물 수")
